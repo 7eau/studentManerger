@@ -27,92 +27,107 @@ public class UserService {
 
     /**
      * 用户登陆
-     * @param role
-     * @param username
-     * @param password
+     * @param role 分为manager（管理员）、student（学生）
+     * @param username  用户名
+     * @param password  密码
      * @return
      */
-    public Map<String,Object> userLogin(HttpServletRequest request, String role, String username, String password) {
+    public Map<String,Object> Login(HttpServletRequest request, String role, String username, String password) {
+        Map<String,Object> result;
+        HttpSession session = request.getSession();
+
+        if("manager".equals(role)) {
+            result = adminLogin(session, username, password);
+        } else {
+            result = studentLogin(session, username, password);
+        }
+        return result;
+    }
+
+    /**
+     * 学生登录
+     * @param session   登录session
+     * @param username  用户名
+     * @param password  密码
+     * @return
+     */
+    private Map<String, Object> studentLogin(HttpSession session, String username, String password) {
         Map<String,Object> result = new HashMap<String,Object>();
-//        String adminDisplayName=null;
-
-        if("manager".equals(role)){
-
-            //登陆用户为管理员
-            Map<String,Object>data = new HashMap<>();
-            data=userDao.adminLogin(username,password);
-
-            if(data!=null && data.get("id")!=null){
+        //学生登陆
+        //从学生表中查找该用户名的学生
+        Map<String,Object> stu = userDao.stuLogin(username);
+        if(stu!=null && stu.get("reset").equals("0")){
+            //有该用户，并且还没有重新设置过密码
+            if(password.equals("123456")){
                 //登陆成功
-                request.getSession().setAttribute("adminUserName",data.get("username"));
-                request.getSession().setAttribute("adminName",data.get("name"));
-                request.getSession().setAttribute("adminId",data.get("id"));
+                session.setAttribute("userName",stu.get("name"));
+                session.setAttribute("userId",stu.get("id"));
+                session.setAttribute("defaultPass",true);
                 result.put("code",true);
-                result.put("url","/index.jsp");
-                return result;
+                result.put("url","/stuMsg.jsp");
             }else{
                 result.put("code",false);
-                result.put("msg","管理员用户名或密码错误！");
-                return result;
+                result.put("msg","用户名或密码错误！");
             }
-        }
-        else{
-            //学生登陆
-            //从学生表中查找该用户名的学生
-            Map<String,Object> stu = userDao.stuLogin(username);
-            if(stu!=null && stu.get("reset").equals("0")){
-                //有该用户，并且还没有重新设置过密码
-                if(password.equals("123456")){
-                    //登陆成功
-                    request.getSession().setAttribute("userName",stu.get("name"));
-                    request.getSession().setAttribute("userId",stu.get("id"));
-                    request.getSession().setAttribute("defaultPass",true);
-                    result.put("code",true);
-                    result.put("url","/stuMsg.jsp");
-                    return result;
-                }else{
-                    result.put("code",false);
-                    result.put("msg","用户名或密码错误！");
-                    return result;
-                }
-            }else if(stu!=null && stu.get("reset").equals("1")){
-                //学生已经重置密码
-                int j = userDao.studentLogin(username,password);
-                if(j>0){
-                    //登陆成功
-                    result.put("code",true);
-                    request.getSession().setAttribute("userName",stu.get("name"));
-                    request.getSession().setAttribute("userId",stu.get("id"));
-                    result.put("url","/stuMsg.jsp");
-                    return result;
-                }else{
-                    result.put("code",false);
-                    result.put("msg","用户名或密码错误！");
-                    return result;
-                }
-            }else if(stu==null){
-                //从user表中找
-                Map<String,Object> stu1 = userDao.studentLogin1(username,password);
-                if(stu1==null) {
-                    result.put("code", false);
-                    result.put("msg", "用户名或密码错误！");
-                    return result;
-                }else{
-                    int stuId = (Integer)stu1.get("stuId");
-                    //查找用户名
-                    String name = userDao.getUsername(stuId);
-                    result.put("code", true);
-                    result.put("url","/stuMsg.jsp");
-                    request.getSession().setAttribute("userName",name);
-                    request.getSession().setAttribute("userId",stuId);
-                    return result;
-                }
+        }else if(stu!=null && stu.get("reset").equals("1")){
+            //学生已经重置密码
+            int j = userDao.studentLogin(username,password);
+            if(j>0){
+                //登陆成功
+                result.put("code",true);
+                session.setAttribute("userName",stu.get("name"));
+                session.setAttribute("userId",stu.get("id"));
+                result.put("url","/stuMsg.jsp");
             }else{
+                result.put("code",false);
+                result.put("msg","用户名或密码错误！");
+            }
+        }else if(stu==null){
+            //从user表中找
+            Map<String,Object> stu1 = userDao.studentLogin1(username,password);
+            if(stu1==null) {
                 result.put("code", false);
                 result.put("msg", "用户名或密码错误！");
-                return result;
+            }else{
+                int stuId = (Integer)stu1.get("stuId");
+                //查找用户名
+                String name = userDao.getUsername(stuId);
+                result.put("code", true);
+                result.put("url","/stuMsg.jsp");
+                session.setAttribute("userName",name);
+                session.setAttribute("userId",stuId);
             }
+        }else{
+            result.put("code", false);
+            result.put("msg", "用户名或密码错误！");
         }
+        return result;
+    }
+
+    /**
+     * 管理员登录
+     * @param session 登录session
+     * @param username 用户名
+     * @param password 密码
+     * @return
+     */
+    private Map<String, Object> adminLogin(HttpSession session, String username, String password) {
+        Map<String,Object> result = new HashMap<String,Object>();
+        Map<String,Object>data = new HashMap<>();
+        data=userDao.adminLogin(username,password);
+
+        if(data!=null && data.get("id")!=null){
+            //登陆成功
+            session.setAttribute("adminUserName",data.get("username"));
+            session.setAttribute("adminName",data.get("name"));
+            session.setAttribute("adminId",data.get("id"));
+            result.put("code",true);
+            result.put("url","/index.jsp");
+        }else{
+            result.put("code",false);
+            result.put("msg","管理员用户名或密码错误！");
+        }
+        return result;
     }
 
     public void UserLogout(HttpServletRequest request, HttpServletResponse response) throws IOException

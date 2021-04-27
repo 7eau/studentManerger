@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +37,8 @@ public class UserController {
      */
     @RequestMapping("/userLogin.do")
     public void userLogin(String role , String username, String password , HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String,Object> result = new HashMap<String,Object>();
-        result = userService.userLogin(request,role,username,password);
+        Map<String,Object> result;
+        result = userService.Login(request,role,username,password);
         ResponseUtil.returnJson(result,response);
     }
 
