@@ -1,397 +1,314 @@
--- MySQL dump 10.13  Distrib 5.7.22, for Win64 (x86_64)
---
--- Host: localhost    Database: stumanager
--- ------------------------------------------------------
--- Server version	5.7.22-log
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : mysql
+ Source Server Type    : MySQL
+ Source Server Version : 50527
+ Source Host           : localhost:3306
+ Source Schema         : stumanager
 
---
--- Create database stuManager
---
+ Target Server Type    : MySQL
+ Target Server Version : 50527
+ File Encoding         : 65001
 
-drop database if exists stumanager;
-create database stumanager;
-use stumanager;
+ Date: 28/04/2021 15:18:41
+*/
 
---
--- Table structure for table `admin`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `admin` (
+CREATE TABLE `admin`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
-  `username` varchar(20) DEFAULT NULL COMMENT '管理员账号',
-  `name` varchar(20) DEFAULT NULL COMMENT '管理员姓名',
-  `password` varchar(20) DEFAULT NULL COMMENT '密码',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '管理员账号',
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '管理员姓名',
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `admin`
---
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES (1, 'admin', '管理员', 'admin');
 
-LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'admin','管理员','admin');
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `course`
---
-
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
 DROP TABLE IF EXISTS `course`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `course` (
+CREATE TABLE `course`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '课程Id',
-  `name` varchar(20) DEFAULT NULL COMMENT '课程名称',
-  `courseType` int(11) DEFAULT NULL COMMENT '课程类型',
-  `score` varchar(20) DEFAULT NULL COMMENT '课程学分',
-  PRIMARY KEY (`id`),
-  KEY `FK_CourseType` (`courseType`),
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程名称',
+  `courseType` int(11) NULL DEFAULT NULL COMMENT '课程类型',
+  `score` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程学分',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_CourseType`(`courseType`) USING BTREE,
   CONSTRAINT `FK_CourseType` FOREIGN KEY (`courseType`) REFERENCES `coursetype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `course`
---
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES (1, '软件工程', 2, '3');
+INSERT INTO `course` VALUES (2, '计算机图形学', 2, '4');
+INSERT INTO `course` VALUES (3, '计算机网络', 2, '3');
+INSERT INTO `course` VALUES (8, '测试课程', 2, '1');
+INSERT INTO `course` VALUES (9, 'C语言程序设计', 2, '1');
+INSERT INTO `course` VALUES (10, '普通话', 3, '2');
+INSERT INTO `course` VALUES (11, '数据结构', 2, '2.0');
+INSERT INTO `course` VALUES (12, '高数', 1, '2.0');
 
-LOCK TABLES `course` WRITE;
-/*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'软件工程',2,'3'),(2,'计算机图形学',2,'4'),(3,'计算机网络',2,'3'),(8,'测试课程',2,'1'),(9,'C语言程序设计',2,'1'),(10,'普通话',3,'2'),(11,'数据结构',2,'2.0'),(12,'高数',1,'2.0');
-/*!40000 ALTER TABLE `course` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `coursetype`
---
-
+-- ----------------------------
+-- Table structure for coursetype
+-- ----------------------------
 DROP TABLE IF EXISTS `coursetype`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `coursetype` (
+CREATE TABLE `coursetype`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类型id',
-  `name` varchar(20) DEFAULT NULL COMMENT '类型名称',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类型名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `coursetype`
---
+-- ----------------------------
+-- Records of coursetype
+-- ----------------------------
+INSERT INTO `coursetype` VALUES (1, '工科');
+INSERT INTO `coursetype` VALUES (2, '计算机必修');
+INSERT INTO `coursetype` VALUES (3, '公共课程');
+INSERT INTO `coursetype` VALUES (4, '理科');
 
-LOCK TABLES `coursetype` WRITE;
-/*!40000 ALTER TABLE `coursetype` DISABLE KEYS */;
-INSERT INTO `coursetype` VALUES (1,'工科'),(2,'计算机必修'),(3,'公共课程'),(4,'理科');
-/*!40000 ALTER TABLE `coursetype` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `dormi_zone`
---
-
+-- ----------------------------
+-- Table structure for dormi_zone
+-- ----------------------------
 DROP TABLE IF EXISTS `dormi_zone`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `dormi_zone` (
+CREATE TABLE `dormi_zone`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `zone_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `zone_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `dormi_zone`
---
+-- ----------------------------
+-- Records of dormi_zone
+-- ----------------------------
+INSERT INTO `dormi_zone` VALUES (1, '芷兰');
+INSERT INTO `dormi_zone` VALUES (2, '丰泽');
+INSERT INTO `dormi_zone` VALUES (3, '东湖');
+INSERT INTO `dormi_zone` VALUES (4, '金岸');
 
-LOCK TABLES `dormi_zone` WRITE;
-/*!40000 ALTER TABLE `dormi_zone` DISABLE KEYS */;
-INSERT INTO `dormi_zone` VALUES (1,'芷兰'),(2,'丰泽'),(3,'东湖'),(4,'金岸');
-/*!40000 ALTER TABLE `dormi_zone` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `punish`
---
-
+-- ----------------------------
+-- Table structure for punish
+-- ----------------------------
 DROP TABLE IF EXISTS `punish`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `punish` (
+CREATE TABLE `punish`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '惩罚id',
-  `student_id` int(11) DEFAULT NULL COMMENT '惩罚学生Id',
-  `content` varchar(1000) DEFAULT NULL COMMENT '惩罚内容',
-  `time` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_StudentId_punish` (`student_id`),
+  `student_id` int(11) NULL DEFAULT NULL COMMENT '惩罚学生Id',
+  `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '惩罚内容',
+  `time` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_StudentId_punish`(`student_id`) USING BTREE,
   CONSTRAINT `FK_StudentId_punish` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `punish`
---
+-- ----------------------------
+-- Records of punish
+-- ----------------------------
+INSERT INTO `punish` VALUES (2, 33, '第二节课翘课', '2018-06-12');
+INSERT INTO `punish` VALUES (3, 33, '1', '2018-06-04');
 
-LOCK TABLES `punish` WRITE;
-/*!40000 ALTER TABLE `punish` DISABLE KEYS */;
-INSERT INTO `punish` VALUES (2,33,'第二节课翘课','2018-06-12'),(3,33,'1','2018-06-04');
-/*!40000 ALTER TABLE `punish` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `quality`
---
-
+-- ----------------------------
+-- Table structure for quality
+-- ----------------------------
 DROP TABLE IF EXISTS `quality`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `quality` (
+CREATE TABLE `quality`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '素质拓展Id',
-  `name` varchar(50) DEFAULT NULL COMMENT '素质拓展活动名称',
-  `score` float DEFAULT NULL COMMENT '素质拓展分数',
-  `student_id` int(11) DEFAULT NULL COMMENT '选择学生id',
-  `time` varchar(16) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_StudentId_quality` (`student_id`),
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '素质拓展活动名称',
+  `score` float NULL DEFAULT NULL COMMENT '素质拓展分数',
+  `student_id` int(11) NULL DEFAULT NULL COMMENT '选择学生id',
+  `time` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_StudentId_quality`(`student_id`) USING BTREE,
   CONSTRAINT `FK_StudentId_quality` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `quality`
---
+-- ----------------------------
+-- Records of quality
+-- ----------------------------
+INSERT INTO `quality` VALUES (1, 'a', 1, 38, '2021-03-31');
 
-LOCK TABLES `quality` WRITE;
-/*!40000 ALTER TABLE `quality` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quality` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `reward`
---
-
+-- ----------------------------
+-- Table structure for reward
+-- ----------------------------
 DROP TABLE IF EXISTS `reward`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reward` (
+CREATE TABLE `reward`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '奖励Id',
-  `student_id` int(11) DEFAULT NULL COMMENT '奖励学生Id',
-  `content` varchar(1000) DEFAULT NULL COMMENT '奖励内容',
-  `time` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_StudentId_reward` (`student_id`),
+  `student_id` int(11) NULL DEFAULT NULL COMMENT '奖励学生Id',
+  `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '奖励内容',
+  `time` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_StudentId_reward`(`student_id`) USING BTREE,
   CONSTRAINT `FK_StudentId_reward` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `reward`
---
+-- ----------------------------
+-- Records of reward
+-- ----------------------------
 
-LOCK TABLES `reward` WRITE;
-/*!40000 ALTER TABLE `reward` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reward` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `stu_afl`
---
-
+-- ----------------------------
+-- Table structure for stu_afl
+-- ----------------------------
 DROP TABLE IF EXISTS `stu_afl`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `stu_afl` (
+CREATE TABLE `stu_afl`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) DEFAULT NULL,
-  `reason` varchar(255) DEFAULT NULL,
-  `start_time` varchar(255) DEFAULT NULL,
-  `end_time` varchar(255) DEFAULT NULL,
-  `approve` int(11) DEFAULT '0',
-  `approve_time` varchar(255) DEFAULT NULL,
-  `approve_admin_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_StudentId_afl` (`student_id`),
+  `student_id` int(11) NULL DEFAULT NULL,
+  `reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `start_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `end_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `approve` int(11) NULL DEFAULT 0,
+  `approve_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `approve_admin_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_StudentId_afl`(`student_id`) USING BTREE,
   CONSTRAINT `FK_StudentId_afl` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `stu_afl`
---
+-- ----------------------------
+-- Records of stu_afl
+-- ----------------------------
+INSERT INTO `stu_afl` VALUES (7, 33, '学生会开会', '2018-06-03', '2018-06-06', 1, NULL, NULL);
+INSERT INTO `stu_afl` VALUES (8, 33, '考试', '2018-06-03', '2018-06-04', 1, NULL, NULL);
+INSERT INTO `stu_afl` VALUES (9, 34, 'huijia', '2018-06-03', '2018-06-05', 0, NULL, NULL);
+INSERT INTO `stu_afl` VALUES (10, 33, '测试', '2018-06-03', '2018-06-06', 1, NULL, NULL);
 
-LOCK TABLES `stu_afl` WRITE;
-/*!40000 ALTER TABLE `stu_afl` DISABLE KEYS */;
-INSERT INTO `stu_afl` VALUES (7,33,'学生会开会','2018-06-03','2018-06-06',1,NULL,NULL),(8,33,'考试','2018-06-03','2018-06-04',1,NULL,NULL),(9,34,'huijia','2018-06-03','2018-06-05',0,NULL,NULL),(10,33,'测试','2018-06-03','2018-06-06',1,NULL,NULL);
-/*!40000 ALTER TABLE `stu_afl` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `stu_course`
---
-
+-- ----------------------------
+-- Table structure for stu_course
+-- ----------------------------
 DROP TABLE IF EXISTS `stu_course`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `stu_course` (
+CREATE TABLE `stu_course`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '选课Id',
-  `student_id` int(11) DEFAULT NULL COMMENT '学生id',
-  `course_id` int(11) DEFAULT NULL COMMENT '课程Id',
-  `score` int(11) DEFAULT NULL COMMENT '课程成绩',
-  PRIMARY KEY (`id`),
-  KEY `FK_StudentId_course` (`student_id`),
-  KEY `FK_CourseId` (`course_id`),
+  `student_id` int(11) NULL DEFAULT NULL COMMENT '学生id',
+  `course_id` int(11) NULL DEFAULT NULL COMMENT '课程Id',
+  `score` int(11) NULL DEFAULT NULL COMMENT '课程成绩',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_StudentId_course`(`student_id`) USING BTREE,
+  INDEX `FK_CourseId`(`course_id`) USING BTREE,
   CONSTRAINT `FK_CourseId` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_StudentId_course` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `stu_course`
---
+-- ----------------------------
+-- Records of stu_course
+-- ----------------------------
+INSERT INTO `stu_course` VALUES (1, 34, 1, 12);
+INSERT INTO `stu_course` VALUES (3, 33, 2, 60);
+INSERT INTO `stu_course` VALUES (7, 34, 2, NULL);
+INSERT INTO `stu_course` VALUES (9, 34, 8, 65);
+INSERT INTO `stu_course` VALUES (10, 33, 8, 80);
+INSERT INTO `stu_course` VALUES (11, 35, 8, NULL);
+INSERT INTO `stu_course` VALUES (12, 35, 1, 87);
+INSERT INTO `stu_course` VALUES (14, 35, 3, NULL);
+INSERT INTO `stu_course` VALUES (18, 34, 9, 90);
+INSERT INTO `stu_course` VALUES (19, 33, 9, 86);
+INSERT INTO `stu_course` VALUES (20, 35, 2, NULL);
+INSERT INTO `stu_course` VALUES (22, 35, 9, 60);
+INSERT INTO `stu_course` VALUES (23, 37, 9, 75);
+INSERT INTO `stu_course` VALUES (24, 37, 8, NULL);
+INSERT INTO `stu_course` VALUES (25, 37, 3, 90);
+INSERT INTO `stu_course` VALUES (26, 37, 1, NULL);
+INSERT INTO `stu_course` VALUES (27, 33, 3, NULL);
+INSERT INTO `stu_course` VALUES (29, 33, 10, NULL);
+INSERT INTO `stu_course` VALUES (30, 35, 11, NULL);
+INSERT INTO `stu_course` VALUES (31, 33, 12, NULL);
+INSERT INTO `stu_course` VALUES (32, 34, 3, NULL);
 
-LOCK TABLES `stu_course` WRITE;
-/*!40000 ALTER TABLE `stu_course` DISABLE KEYS */;
-INSERT INTO `stu_course` VALUES (1,34,1,12),(3,33,2,60),(7,34,2,NULL),(9,34,8,65),(10,33,8,80),(11,35,8,NULL),(12,35,1,87),(14,35,3,NULL),(18,34,9,90),(19,33,9,86),(20,35,2,NULL),(22,35,9,60),(23,37,9,75),(24,37,8,NULL),(25,37,3,90),(26,37,1,NULL),(27,33,3,NULL),(29,33,10,NULL),(30,35,11,NULL),(31,33,12,NULL);
-/*!40000 ALTER TABLE `stu_course` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `stu_dormitory`
---
-
+-- ----------------------------
+-- Table structure for stu_dormitory
+-- ----------------------------
 DROP TABLE IF EXISTS `stu_dormitory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `stu_dormitory` (
+CREATE TABLE `stu_dormitory`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `stu_id` int(11) DEFAULT NULL,
-  `zone_id` int(11) DEFAULT NULL,
-  `building` varchar(64) DEFAULT NULL,
-  `room` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_stu_id` (`stu_id`),
-  KEY `FK_zone_id` (`zone_id`),
+  `stu_id` int(11) NULL DEFAULT NULL,
+  `zone_id` int(11) NULL DEFAULT NULL,
+  `building` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `room` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_stu_id`(`stu_id`) USING BTREE,
+  INDEX `FK_zone_id`(`zone_id`) USING BTREE,
   CONSTRAINT `FK_stu_id` FOREIGN KEY (`stu_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_zone_id` FOREIGN KEY (`zone_id`) REFERENCES `dormi_zone` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `stu_dormitory`
---
+-- ----------------------------
+-- Records of stu_dormitory
+-- ----------------------------
+INSERT INTO `stu_dormitory` VALUES (4, 33, 4, '03', '334');
+INSERT INTO `stu_dormitory` VALUES (5, 37, 2, '01', '204');
+INSERT INTO `stu_dormitory` VALUES (7, 38, 3, '10', '203');
 
-LOCK TABLES `stu_dormitory` WRITE;
-/*!40000 ALTER TABLE `stu_dormitory` DISABLE KEYS */;
-INSERT INTO `stu_dormitory` VALUES (4,33,4,'03','334'),(5,37,2,'01','204'),(7,38,3,'10','203');
-/*!40000 ALTER TABLE `stu_dormitory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student`
---
-
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
 DROP TABLE IF EXISTS `student`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student` (
+CREATE TABLE `student`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生id',
-  `name` varchar(20) DEFAULT NULL COMMENT '学生姓名',
-  `idcard` varchar(20) DEFAULT NULL COMMENT '身份证',
-  `sex` varchar(10) DEFAULT NULL COMMENT '性别',
-  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
-  `qq` varchar(20) DEFAULT NULL COMMENT 'QQ',
-  `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
-  `address` varchar(50) DEFAULT NULL COMMENT '家庭住址',
-  `reset` varchar(11) DEFAULT '0' COMMENT '修改密码标志',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '学生姓名',
+  `idcard` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '身份证',
+  `sex` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别',
+  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话',
+  `qq` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'QQ',
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `address` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '家庭住址',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `student`
---
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES (33, '张三', '11111111111111111', '男', '187xxxxxxxx', '123456789', '4875772fdf58243@qq.com', '湖南省长沙市芙蓉区东湖路');
+INSERT INTO `student` VALUES (34, '李四', '22222222222222222', '女', '135XXXXXXX', '123456789', '184dsa8551111165@qq.com', '湖南省长沙市芙蓉区湖南农业大学');
+INSERT INTO `student` VALUES (35, '小明', '33333333333333333', '男', '135XXXXXXX', '123456789', '1485697525281547@qq.com', '湖南省长沙市芙蓉区东湖路');
+INSERT INTO `student` VALUES (37, '蔡梦婷', '430223199712208325', '女', '187110430821', '', '', '');
+INSERT INTO `student` VALUES (38, '颜妃', '430223199612048326', '女', '18711013082', '2659231576', '1485697525281547@qq.com', '');
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (33,'张三','11111111111111111','男','187xxxxxxxx','123456789','4875772fdf58243@qq.com','湖南省长沙市芙蓉区东湖路','1'),(34,'李四','22222222222222222','女','135XXXXXXX','123456789','184dsa8551111165@qq.com','湖南省长沙市芙蓉区湖南农业大学','1'),(35,'小明','33333333333333333','男','135XXXXXXX','123456789','1485697525281547@qq.com','湖南省长沙市芙蓉区东湖路','0'),(37,'蔡梦婷','430223199712208325','女','187110430821','','','','1'),(38,'颜妃','430223199612048326','女','18711013082','2659231576','1485697525281547@qq.com','','0');
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `switch`
---
-
+-- ----------------------------
+-- Table structure for switch
+-- ----------------------------
 DROP TABLE IF EXISTS `switch`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `switch` (
+CREATE TABLE `switch`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '开关id',
-  `name` varchar(20) DEFAULT NULL COMMENT '开关名称',
-  `state` int(11) DEFAULT NULL COMMENT '开关状态(1位打开状态)',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '开关名称',
+  `state` int(11) NULL DEFAULT NULL COMMENT '开关状态(1位打开状态)',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `switch`
---
+-- ----------------------------
+-- Records of switch
+-- ----------------------------
+INSERT INTO `switch` VALUES (1, 'studentSwitch', 0);
+INSERT INTO `switch` VALUES (2, 'courseSwitch', 1);
 
-LOCK TABLES `switch` WRITE;
-/*!40000 ALTER TABLE `switch` DISABLE KEYS */;
-INSERT INTO `switch` VALUES (1,'studentSwitch',0),(2,'courseSwitch',1);
-/*!40000 ALTER TABLE `switch` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
 DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `username` varchar(20) DEFAULT NULL COMMENT '用户名',
-  `password` varchar(20) DEFAULT NULL COMMENT '密码',
-  `stuId` int(11) DEFAULT NULL COMMENT '学生id',
-  PRIMARY KEY (`id`),
-  KEY `FK_StudentId_user` (`stuId`),
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `stuId` int(11) NULL DEFAULT NULL COMMENT '学生id',
+  `reset` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_StudentId_user`(`stuId`) USING BTREE,
   CONSTRAINT `FK_StudentId_user` FOREIGN KEY (`stuId`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `user`
---
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (6, '17050506116', '123456', 34, '0');
+INSERT INTO `user` VALUES (7, '123', '123', 33, '1');
+INSERT INTO `user` VALUES (9, '17060606125', '456123', 37, '1');
+INSERT INTO `user` VALUES (10, '17050506126', '123456', 35, '0');
+INSERT INTO `user` VALUES (11, '456', '123456', 38, '0');
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,'123456','123456',34),(7,'123','123',33),(9,'kay','456123',37);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-07-01 14:20:22
+SET FOREIGN_KEY_CHECKS = 1;
