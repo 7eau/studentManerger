@@ -28,4 +28,6 @@ public interface UserDao {
     String getUsername(int stuId);
 
     void updateAdminPassword(String adminId,String newPassword);
+
+
 }

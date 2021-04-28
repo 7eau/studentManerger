@@ -1,6 +1,7 @@
 package com.stu.user.service;
 
 import com.stu.user.dao.UserDao;
+import com.stu.user.dao.UserLoginDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserLoginDao userLoginDao;
 
     /**
      * 用户登陆
@@ -53,9 +56,45 @@ public class UserService {
      */
     private Map<String, Object> studentLogin(HttpSession session, String username, String password) {
         Map<String,Object> result = new HashMap<String,Object>();
-        //学生登陆
-        //从学生表中查找该用户名的学生
-        Map<String,Object> stu = userDao.stuLogin(username);
+        /**
+         * 一、存在该学生
+         *  原逻辑：存在学生没有账号。。。×
+         *  现逻辑：学生必有账号->登录只验证账号、密码即可..
+         */
+        Map<String, Object> rst = userDao.studentLogin1(username, password);
+        if (rst == null) {  //用户名或密码错误！
+            result.put("code",false);
+            result.put("msg","用户名或密码错误！");
+        } else {    //用户名和密码正确
+
+            // 可以使用的代码
+            Map<String, Object> stu = userDao.studentLogin1(username,password);
+            int stuId = (Integer)rst.get("stuId");
+            String name = userDao.getUsername(stuId);
+
+            // 测试使用的代码
+//            int stuId = (Integer)rst.get("stuId");
+//            Map<String, Object> stu = userLoginDao.getStudentById(stuId);
+//            String name = (String) stu.get("name");
+
+
+
+            //判断是否重置密码
+            if (password.equals("123456")) {    //未重置密码
+                session.setAttribute("defaultPass",true);
+            }
+            session.setAttribute("userName", name);
+            session.setAttribute("userId",stuId);
+            result.put("code",true);
+            result.put("url","/stuMsg.jsp");
+
+
+        }
+        return result;
+
+        // 以下是原代码逻辑
+        /*
+        Map<String,Object> stu = userDao.stuLogin(username);    //存在这个学生
         if(stu!=null && stu.get("reset").equals("0")){
             //有该用户，并且还没有重新设置过密码
             if(password.equals("123456")){
@@ -72,23 +111,23 @@ public class UserService {
         }else if(stu!=null && stu.get("reset").equals("1")){
             //学生已经重置密码
             int j = userDao.studentLogin(username,password);
-            if(j>0){
+            if(j > 0) {
                 //登陆成功
                 result.put("code",true);
                 session.setAttribute("userName",stu.get("name"));
                 session.setAttribute("userId",stu.get("id"));
                 result.put("url","/stuMsg.jsp");
-            }else{
+            } else {
                 result.put("code",false);
                 result.put("msg","用户名或密码错误！");
             }
-        }else if(stu==null){
+        } else if(stu==null) {      //不存在这个学生
             //从user表中找
             Map<String,Object> stu1 = userDao.studentLogin1(username,password);
             if(stu1==null) {
                 result.put("code", false);
                 result.put("msg", "用户名或密码错误！");
-            }else{
+            } else {
                 int stuId = (Integer)stu1.get("stuId");
                 //查找用户名
                 String name = userDao.getUsername(stuId);
@@ -101,7 +140,7 @@ public class UserService {
             result.put("code", false);
             result.put("msg", "用户名或密码错误！");
         }
-        return result;
+        return result;*/
     }
 
     /**
@@ -113,17 +152,18 @@ public class UserService {
      */
     private Map<String, Object> adminLogin(HttpSession session, String username, String password) {
         Map<String,Object> result = new HashMap<String,Object>();
-        Map<String,Object>data = new HashMap<>();
+        Map<String,Object>data;
+
         data=userDao.adminLogin(username,password);
 
-        if(data!=null && data.get("id")!=null){
+        if(data!=null){ // 去掉原逻辑的 '&& data.get("id")!=null' 判断，我认为是不需要这个的。
             //登陆成功
             session.setAttribute("adminUserName",data.get("username"));
             session.setAttribute("adminName",data.get("name"));
             session.setAttribute("adminId",data.get("id"));
             result.put("code",true);
             result.put("url","/index.jsp");
-        }else{
+        } else {
             result.put("code",false);
             result.put("msg","管理员用户名或密码错误！");
         }
