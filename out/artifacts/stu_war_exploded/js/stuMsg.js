@@ -30,6 +30,7 @@ var initMsg = function(){
             $("#address").val(result.data.address);
             if(result.data.reset==='0'){
                 $("#resetPassword").css("display","block");
+                $("#username").val(result.data.username);
             }else{
                 $("#resetPassword").css("display","none");
             }

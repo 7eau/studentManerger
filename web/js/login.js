@@ -75,6 +75,8 @@ var initClick = function(){
                     window.location.href=result.url;
                 } else {
                     $.messager.alert("提示消息",result.msg);
+                    $("#password").val("");
+                    $("#checkCode").val("");
                 }
             }
         });

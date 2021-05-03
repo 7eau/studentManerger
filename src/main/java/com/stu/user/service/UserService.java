@@ -35,14 +35,23 @@ public class UserService {
      * @param password  密码
      * @return
      */
-    public Map<String,Object> Login(HttpServletRequest request, String role, String username, String password) {
+    public Map<String,Object> Login(HttpServletRequest request, String role, String username, String password, String checkCode) {
         Map<String,Object> result;
         HttpSession session = request.getSession();
 
-        if("manager".equals(role)) {
-            result = adminLogin(session, username, password);
+        // 1. 验证验证码是否正确
+        String realCode = (String) session.getAttribute("checkCode");
+        if (!checkCode.equals(realCode)) {//验证码错误
+            result = new HashMap<String,Object>();
+            result.put("code", false);
+            result.put("msg", "验证码错误！");
         } else {
-            result = studentLogin(session, username, password);
+            //2. 验证码正确时，再分角色登录
+            if("manager".equals(role)) {
+                result = adminLogin(session, username, password);
+            } else {
+                result = studentLogin(session, username, password);
+            }
         }
         return result;
     }

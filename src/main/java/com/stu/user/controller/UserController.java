@@ -43,9 +43,9 @@ public class UserController {
      * @throws IOException
      */
     @RequestMapping("/userLogin.do")
-    public void userLogin(String role , String username, String password , HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void userLogin(String checkCode, String role , String username, String password , HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String,Object> result;
-        result = userService.Login(request,role,username,password);
+        result = userService.Login(request,role,username,password, checkCode);
         ResponseUtil.returnJson(result,response);
     }
 

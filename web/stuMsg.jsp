@@ -140,7 +140,7 @@
                        登录名：
                     </label>
                     <div class="col-md-8">
-                        <input type="text" id="username" class="form-control">
+                        <input type="text" id="username" disabled class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
