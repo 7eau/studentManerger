@@ -26,7 +26,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!--configLocation属性指定mybatis的核心配置文件 -->
-        <property name="mapperLocations" value="classpath:com/stu/**/dao/mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mappers/*.xml"/>
     </bean>
     <!-- 配置文件上传参数 -->
 <!--    <bean id="multipartResolver"-->

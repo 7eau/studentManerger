@@ -15,45 +15,52 @@
 </head>
 <body>
 
-    <div class="login-box">
+<div class="login-box">
+    <fieldset>
+        <legend><h2>学生信息管理系统登陆</h2></legend>
         <fieldset>
-            <legend><h2>学生信息管理系统登陆</h2></legend>
-            <fieldset>
-                <div class="form-horizontal mybox">
-                    <div class="form-group">
-                        <lebel for="username" class="col-md-3 control-label">用户名：</lebel>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="username" placeholder="请输入登陆名">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <lebel for="password" class="col-md-3 control-label">密码：</lebel>
-                        <div class="col-md-8">
-                            <input type="password" class="form-control" id="password" placeholder="请输入密码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <lebel for="password" class="col-md-3 control-label">身份：</lebel>
-                        <div class="col-md-8">
-                            <label class="radio-inline">
-                                <input type="radio" name="role" value="student" checked> 学生
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="role" value="manager"> 管理员
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-top: 30px;">
-                        <div class="col-md-offset-5">
-                            <button class="btn btn-primary" id="login">登陆</button>
-                            <button class="btn btn-default" id="reset">重置</button>
-                            <button class="btn btn-warning" id="signup">注册</button>
-                        </div>
+            <div class="form-horizontal mybox">
+                <div class="form-group">
+                    <lebel for="username" class="col-md-3 control-label">用户名：</lebel>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="username" placeholder="请输入登陆名">
                     </div>
                 </div>
-            </fieldset>
+                <div class="form-group">
+                    <lebel for="password" class="col-md-3 control-label">密码：</lebel>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lebel for="checkCode" class="col-md-3 control-label">验证码：</lebel>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="checkCode" placeholder="请输入验证码">
+                    </div>
+                    <lebel for="checkCode" class="col-md-3"><a href="#"><img id="checkImg" alt="验证码" src="/stu/user/checkCode.do"></a></lebel>
+                </div>
+                <div class="form-group">
+                    <lebel for="password" class="col-md-3 control-label">身份：</lebel>
+                    <div class="col-md-8">
+                        <label class="radio-inline">
+                            <input type="radio" name="role" value="student" checked> 学生
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="role" value="manager"> 管理员
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 30px;">
+                    <div class="col-md-offset-5">
+                        <button class="btn btn-primary" id="login">登陆</button>
+                        <button class="btn btn-default" id="reset">重置</button>
+                        <button class="btn btn-warning" id="signup">注册</button>
+                    </div>
+                </div>
+            </div>
         </fieldset>
-    </div>
+    </fieldset>
+</div>
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="plugin/easyui/jquery.easyui.min.js"></script>
 <script src="js/bootstrap.js"></script>

@@ -1,14 +1,21 @@
 package com.stu.user.controller;
 
 import com.stu.user.service.UserService;
+import com.stu.util.CheckCodeUtils;
 import com.stu.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,4 +77,41 @@ public class UserController {
         ResponseUtil.returnJson(result,response);
     }
 
+    @RequestMapping("/checkCode.do")
+    public void getCheckCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        response.setContentType("image/jpeg");
+
+        //浏览器不要缓存此图片
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        //获取输出流
+        ServletOutputStream sos = response.getOutputStream();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        try {
+            BufferedImage image =
+                    new BufferedImage(CheckCodeUtils.WIDTH, CheckCodeUtils.HEIGHT, BufferedImage.TYPE_INT_RGB);
+            Graphics g = image.getGraphics();
+            //产生随机的认证码
+            char[] rands = CheckCodeUtils.generateCheckCode();
+            //产生图像
+            CheckCodeUtils.drawBackground(g);
+            CheckCodeUtils.drawRands(g, rands);
+            //结束绘制过程
+            g.dispose();
+            //将图像输出到客户端
+            ImageIO.write(image, "JPEG", bos);
+            byte[] buf = bos.toByteArray();
+            response.setContentLength(buf.length);
+            sos.write(buf);
+            //将当前验证码存入Session中
+            session.setAttribute("checkCode", new String(rands));
+        } finally {
+            bos.close();
+            sos.close();
+        }
+
+    }
 }
