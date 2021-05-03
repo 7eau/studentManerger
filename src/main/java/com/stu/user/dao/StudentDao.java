@@ -25,4 +25,6 @@ public interface StudentDao {
     void createUser(String username, String password, int stuId);
 
     void updateStudnetFlag(int stuId);
+
+    void updateUserPwd(String username, String password);
 }

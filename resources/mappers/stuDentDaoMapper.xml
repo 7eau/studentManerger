@@ -31,7 +31,10 @@
     <insert id="createUser" parameterType="string">
         INSERT into user (username,password,stuId) values(#{0},#{1},#{2})
     </insert>
+    <update id="updateUserPwd" parameterType="string">
+        UPDATE user SET password=#{1} WHERE username=#{0}
+    </update>
     <update id="updateStudnetFlag" parameterType="String">
-        UPDATE student set reset='1' where id=#{0}
+        UPDATE user set reset='1' where stuId=#{0}
     </update>
 </mapper>

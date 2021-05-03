@@ -26,7 +26,11 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!--configLocation属性指定mybatis的核心配置文件 -->
-        <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mappers/*.xml</value>
+            </list>
+        </property>
     </bean>
     <!-- 配置文件上传参数 -->
 <!--    <bean id="multipartResolver"-->
@@ -45,7 +49,8 @@
     <!-- MapperScannerConfigurer配置 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- basePackage指定要扫描的包，在此包之下的映射器都会被搜索到。可指定多个包，包与包之间用逗号或分号分隔 -->
-        <property name="basePackage" value="com.stu.user.dao, com.stu.admin.dao" />
+        <property name="basePackage" value="com.stu.**.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- 配置事务管理 -->
     <bean id="transactionManager"

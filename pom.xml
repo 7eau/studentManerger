@@ -5,7 +5,7 @@
     <groupId>studentManager</groupId>
     <artifactId>studentManager-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>studentManager-parent</name>
     <url>http://maven.apache.org</url>
@@ -200,16 +200,19 @@
         </plugins>
         <resources>
             <resource>
-                <directory>${basedir}/src/main/java</directory>
+                <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
             <resource>
-                <directory>${basedir}/resources</directory>
+                <directory>resources</directory>
                 <includes>
-                    <include>**/*.*</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
         </resources>
     </build>

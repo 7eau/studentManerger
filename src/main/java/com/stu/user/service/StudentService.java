@@ -75,19 +75,14 @@ public class StudentService {
             result.put("msg","两次密码输入不一致！");
             return result;
         }
-        //用户名验证
-        int num = studentDao.getUserName(username);
-        if(num>0){
-            result.put("code",false);
-            result.put("msg","登陆名已存在！");
-            return result;
-        }
-        //验证通过，新建用户
-        studentDao.createUser(username,password,stuId);
-        result.put("code",true);
-        result.put("msg","修改成功！");
+
+        // 直接更新password
+        studentDao.updateUserPwd(username, password);
         //改变student表中学生修改密码标志
         studentDao.updateStudnetFlag(stuId);
+
+        result.put("code",true);
+        result.put("msg","修改成功！");
         return result;
     }
 }

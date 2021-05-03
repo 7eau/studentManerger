@@ -19,7 +19,7 @@
 
 
     <!-- 开启SpringMVC注解模式 -->
-    <mvc:annotation-driven/>
+<!--    <mvc:annotation-driven/>-->
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/project/"/>
