@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stu.dao.StuDormitoryMapper">
+  <resultMap id="BaseResultMap" type="com.stu.entity.StuDormitory">
+    <!--@mbg.generated-->
+    <!--@Table stu_dormitory-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="stu_id" jdbcType="INTEGER" property="stuId" />
+    <result column="zone_id" jdbcType="INTEGER" property="zoneId" />
+    <result column="building" jdbcType="VARCHAR" property="building" />
+    <result column="room" jdbcType="VARCHAR" property="room" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, stu_id, zone_id, building, room
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from stu_dormitory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from stu_dormitory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.StuDormitory" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stu_dormitory (stu_id, zone_id, building, 
+      room)
+    values (#{stuId,jdbcType=INTEGER}, #{zoneId,jdbcType=INTEGER}, #{building,jdbcType=VARCHAR}, 
+      #{room,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.StuDormitory" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stu_dormitory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuId != null">
+        stu_id,
+      </if>
+      <if test="zoneId != null">
+        zone_id,
+      </if>
+      <if test="building != null">
+        building,
+      </if>
+      <if test="room != null">
+        room,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuId != null">
+        #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="zoneId != null">
+        #{zoneId,jdbcType=INTEGER},
+      </if>
+      <if test="building != null">
+        #{building,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        #{room,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.StuDormitory">
+    <!--@mbg.generated-->
+    update stu_dormitory
+    <set>
+      <if test="stuId != null">
+        stu_id = #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="zoneId != null">
+        zone_id = #{zoneId,jdbcType=INTEGER},
+      </if>
+      <if test="building != null">
+        building = #{building,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        room = #{room,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.StuDormitory">
+    <!--@mbg.generated-->
+    update stu_dormitory
+    set stu_id = #{stuId,jdbcType=INTEGER},
+      zone_id = #{zoneId,jdbcType=INTEGER},
+      building = #{building,jdbcType=VARCHAR},
+      room = #{room,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

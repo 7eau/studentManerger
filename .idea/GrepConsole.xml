@@ -31,6 +31,17 @@
                 </Pins>
               </value>
             </entry>
+            <entry>
+              <key>
+                <RunConfigurationRef>
+                  <option name="icon" value="tomcat.svg')" />
+                  <option name="name" value="Tomcat 9.0.24" />
+                </RunConfigurationRef>
+              </key>
+              <value>
+                <Pins />
+              </value>
+            </entry>
           </map>
         </option>
       </PinnedGrepConsolesState>

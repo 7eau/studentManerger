@@ -7,7 +7,7 @@
         select count(*) from course
     </select>
 	
-    <select id="getAllCourse" parameterType="string" resultType="map">
+    <select id="getAllCourse" resultType="map">
         SELECT course.`id`,course.`name`,course.`score`,courseType.`name` courseType FROM course
         LEFT JOIN coursetype ON coursetype.id=course.`courseType`
         WHERE course.`name` LIKE CONCAT('%',#{0},'%')

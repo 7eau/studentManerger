@@ -24,7 +24,8 @@ var initMsg = function(){
             }
             else
             {
-                alert("该学生目前没有住宿信息！");
+                $.messager.alert("提示消息", "该学生目前没有住宿信息！")
+                // alert("该学生目前没有住宿信息！");
                 $("#zone").val("没有住宿信息!");
                 $("#building").val("没有住宿信息!");
                 $("#room").val("没有住宿信息!");

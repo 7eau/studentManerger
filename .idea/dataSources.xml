@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="stumanager@localhost" uuid="846075a9-94b9-43ed-8ce2-24d1310ea134">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="MySQL - stumanager@localhost" uuid="2aa79c24-19b5-4bf7-907b-559ef2c36f25">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/stumanager</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
       <driver-properties>
-        <property name="autoReconnect" value="true" />
+        <property name="serverTimezone" value="UTC" />
       </driver-properties>
+      <time-zone>60</time-zone>
     </data-source>
   </component>
 </project>

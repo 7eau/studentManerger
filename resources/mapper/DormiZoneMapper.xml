@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stu.dao.DormiZoneMapper">
+  <resultMap id="BaseResultMap" type="com.stu.entity.DormiZone">
+    <!--@mbg.generated-->
+    <!--@Table dormi_zone-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zone_name" jdbcType="VARCHAR" property="zoneName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, zone_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from dormi_zone
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from dormi_zone
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.DormiZone" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into dormi_zone (zone_name)
+    values (#{zoneName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.DormiZone" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into dormi_zone
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zoneName != null">
+        zone_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zoneName != null">
+        #{zoneName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.DormiZone">
+    <!--@mbg.generated-->
+    update dormi_zone
+    <set>
+      <if test="zoneName != null">
+        zone_name = #{zoneName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.DormiZone">
+    <!--@mbg.generated-->
+    update dormi_zone
+    set zone_name = #{zoneName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

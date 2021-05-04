@@ -184,6 +184,8 @@
             <version>4.0.0-b07</version>
             <scope>provided</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>
@@ -196,6 +198,11 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
             </plugin>
         </plugins>
         <resources>
