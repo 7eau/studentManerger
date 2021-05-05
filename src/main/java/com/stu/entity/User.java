@@ -1,14 +1,14 @@
 package com.stu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+@Component
 public class User {
     /**
     * 用户id
@@ -29,8 +29,6 @@ public class User {
     * 学生id
     */
     private Integer stuid;
-    /**
-     * 是否重置密码
-     */
+
     private String reset;
 }

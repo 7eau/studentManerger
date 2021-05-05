@@ -7,8 +7,8 @@ import java.awt.*;
 @Component
 public class CheckCodeUtils {
 
-    public static int WIDTH = 60;
-    public static int HEIGHT = 20;
+    public static int WIDTH = 70;
+    public static int HEIGHT = 30;
 
 
     public static char[] generateCheckCode() {
@@ -24,13 +24,13 @@ public class CheckCodeUtils {
 
     public static void drawRands(Graphics g, char[] rands) {
         g.setColor(Color.BLACK);
-        g.setFont(new Font(null, Font.ITALIC|Font.BOLD, 18));
+        g.setFont(new Font(null, Font.ITALIC|Font.BOLD, 28));
         //在不同高度上输出验证码的每个字符
-        g.drawString("" + rands[0], 1, 17);
-        g.drawString("" + rands[1], 16, 16);
-        g.drawString("" + rands[2], 31, 18);
-        g.drawString("" + rands[3], 46, 16);
-        System.out.println(rands);
+        g.drawString("" + rands[0], 1, 24);
+        g.drawString("" + rands[1], 18, 27);
+        g.drawString("" + rands[2], 34, 26);
+        g.drawString("" + rands[3], 54, 24);
+//        System.out.println(rands);
     }
 
     public static void drawBackground(Graphics g) {

@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.Course;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface CourseMapper {
     /**
      * delete by primary key

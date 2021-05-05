@@ -23,21 +23,19 @@
 <body>
 <div class="signup-box">
     <fieldset>
-        <legend><h2>管理员密码修改</h2></legend>
+<%--        <legend><h2>管理员密码修改</h2></legend>--%>
         <fieldset>
             <div class="form-horizontal mybox">
-                <div class="form-group">
-                    <lebel for="username" class="col-md-3 control-label">管理员名:</lebel>
+                <div class="form-group hidden">
                     <div class="col-md-8">
                         <input type="hidden" id="adminId" value="<%=request.getSession().getAttribute("adminId")%>">
-                        <input type="text" class="form-control"  disabled id="adminName" value="<%=request.getSession().getAttribute("adminName")%>">
+                        <input type="hidden" class="form-control"  disabled id="adminName" value="<%=request.getSession().getAttribute("adminName")%>">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <lebel for="adminUserName" class="col-md-3 control-label">登录名：</lebel>
+                <div class="form-group hidden">
                     <div class="col-md-8">
-                        <input type="text" class="form-control" disabled id="adminUserName" value="<%=request.getSession().getAttribute("adminUserName")%>">
+                        <input type="hidden" class="form-control" disabled id="adminUserName" value="<%=request.getSession().getAttribute("adminUserName")%>">
                     </div>
                 </div>
 
@@ -66,15 +64,6 @@
                     <div class="col-md-offset-5">
                         <button class="btn btn-primary" id="update">修改</button>
                         <button class="btn btn-default" id="reset">重置</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-1 control-label"></label>
-                    <div class="col-md-8">
-                        <div class="alert alert-info" role="alert">
-                            修改将退出登陆，请使用新密码登陆
-                        </div>
                     </div>
                 </div>
             </div>

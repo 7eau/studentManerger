@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stu.dao.AdminTypeMapper">
+  <resultMap id="BaseResultMap" type="com.stu.entity.AdminType">
+    <!--@mbg.generated-->
+    <!--@Table admin_type-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `describe`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from admin_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from admin_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.AdminType" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_type (`describe`)
+    values (#{describe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.AdminType" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="describe != null">
+        `describe`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.AdminType">
+    <!--@mbg.generated-->
+    update admin_type
+    <set>
+      <if test="describe != null">
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.AdminType">
+    <!--@mbg.generated-->
+    update admin_type
+    set `describe` = #{describe,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

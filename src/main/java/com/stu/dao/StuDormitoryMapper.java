@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.StuDormitory;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface StuDormitoryMapper {
     /**
      * delete by primary key

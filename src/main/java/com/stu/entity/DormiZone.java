@@ -1,21 +1,16 @@
 package com.stu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+@Component
 public class DormiZone {
-    /**
-     * 校区ID
-     */
     private Integer id;
-    /**
-     * 校区名称
-     */
+
     private String zoneName;
 }

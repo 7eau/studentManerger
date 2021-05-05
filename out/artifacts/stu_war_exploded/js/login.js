@@ -90,4 +90,11 @@ var initClick = function(){
         this.src = "/stu/user/checkCode.do?q=" + Math.random();
     });
 
+    $("#reset").click(function () {
+        $("#username").val("");
+        $("#password").val("");
+        $("#checkCode").val("");
+        $("#checkImg").click();
+    })
+
 };

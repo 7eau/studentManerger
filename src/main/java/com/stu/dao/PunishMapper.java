@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.Punish;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface PunishMapper {
     /**
      * delete by primary key

@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.DormiZone;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface DormiZoneMapper {
     /**
      * delete by primary key

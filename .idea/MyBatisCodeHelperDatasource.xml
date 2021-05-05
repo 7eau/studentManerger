@@ -20,8 +20,6 @@
                   <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="javaModelPacakge" value="com.stu.entity" />
                   <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
-                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/src/main/java" />
-                  <option name="javaServicePath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="xmlPackage" value="mapper" />
                   <option name="xmlPath" value="$PROJECT_DIR$/resources" />
                 </UserPackageAndPathInfoByModule>
@@ -37,6 +35,30 @@
                 <TableGenerateConfig>
                   <option name="generatedKey" value="id" />
                   <option name="javaModelName" value="Admin" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="stumanager:admin_type">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="AdminType" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="stumanager:classes">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Classes" />
                   <option name="moduleName" value="stu" />
                   <option name="sequenceColumn" value="" />
                   <option name="sequenceId" value="" />
@@ -73,6 +95,18 @@
                 <TableGenerateConfig>
                   <option name="generatedKey" value="id" />
                   <option name="javaModelName" value="DormiZone" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="stumanager:major">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Major" />
                   <option name="moduleName" value="stu" />
                   <option name="sequenceColumn" value="" />
                   <option name="sequenceId" value="" />
@@ -128,6 +162,18 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="stumanager:stu_class">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="StuClass" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="stumanager:stu_course">
               <value>
                 <TableGenerateConfig>
@@ -152,6 +198,18 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="stumanager:stu_teacher">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="StuTeacher" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="stumanager:student">
               <value>
                 <TableGenerateConfig>
@@ -169,6 +227,42 @@
                 <TableGenerateConfig>
                   <option name="generatedKey" value="id" />
                   <option name="javaModelName" value="Switch" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="stumanager:teacher">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Teacher" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="stumanager:teacher_classes">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="TeacherClasses" />
+                  <option name="moduleName" value="stu" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="stumanager:teacher_course">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="TeacherCourse" />
                   <option name="moduleName" value="stu" />
                   <option name="sequenceColumn" value="" />
                   <option name="sequenceId" value="" />

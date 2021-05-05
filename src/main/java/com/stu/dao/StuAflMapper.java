@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.StuAfl;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface StuAflMapper {
     /**
      * delete by primary key

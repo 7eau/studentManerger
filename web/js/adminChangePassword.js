@@ -17,24 +17,32 @@ var initClick = function(){
         var adminName = $("#adminName").val();
         var adminUserName = $("#adminUserName").val();
         var adminId= $("#adminId").val();
-        var adminOldPassword = $("#currentPassword").val();
-        var adminNewPassword = $("#newPassword").val();
-        var adminConfirmPassword = $("#confirmPassword").val();
+        var adminOldPassword = $.trim($("#currentPassword").val());
+        var adminNewPassword = $.trim($("#newPassword").val());
+        var adminConfirmPassword = $.trim($("#confirmPassword").val());
         var role = 'manager';
 
-        if(newPassword=='' || currentPassword=='' || confirmPassword=='')
+        if(adminOldPassword==='' || adminNewPassword==='' || adminConfirmPassword==='')
         {
             $.messager.alert({
                 title:"提示",
                 icon:"error",
-                msg:"请填写各个密码!"
+                msg:"密码不能为空！"
                 });
             return
         }
 
+        if (adminNewPassword !== adminConfirmPassword) {
+            $.messager.alert({
+                title:"提示",
+                icon:"error",
+                msg:"两次输入的密码不一致!"
+            });
+        }
 
 
-        if(checkOldPassword(adminUserName,adminOldPassword,role)==false)
+
+        if(checkOldPassword(adminUserName,adminOldPassword,role)===false)
         {
             $.messager.alert({
                 title:"提示",
@@ -57,15 +65,16 @@ var initClick = function(){
                 if(result.code){
                     $.messager.confirm("提示",result.msg,function(r){
                         if(r){
-                            window.location.href='/login.jsp';
+                            window.parent.$("#msgwindow").dialog('destroy');
                         }else{
-                            window.location.href='/login.jsp';
+                            window.parent.$("#msgwindow").dialog('destroy');
                         }
                     });
                 }else{
                     $.messager.confirm("提示",result.msg,function(r){
                         if(r){
-                            window.location.href='/login.jsp';
+                            // window.location.href='/login.jsp';
+                            window.parent.$("#msgwindow").dialog('destroy');
                         }
                     });
                 }
@@ -80,12 +89,11 @@ var checkOldPassword=function (adminName,adminPassword,role) {
 
     $.ajax({
         async:false,    //登陆时关闭异步
-        url:"/stu/user/userLogin.do",
+        url:"/admin/checkAdminPwd.do",
         type:"POST",
         data:{
             username:adminName,
-            password:adminPassword,
-            role:role
+            password:adminPassword
         },
         success:function(result){
             if(result.code){

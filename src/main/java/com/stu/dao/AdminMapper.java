@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.Admin;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface AdminMapper {
     /**
      * delete by primary key
@@ -29,7 +31,7 @@ public interface AdminMapper {
      * @param id primary key
      * @return object by primary key
      */
-    Admin selectByPrimaryKey(Integer id);
+    Admin selectByUsernamne(String username);
 
     /**
      * update record selective

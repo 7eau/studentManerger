@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.Quality;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface QualityMapper {
     /**
      * delete by primary key

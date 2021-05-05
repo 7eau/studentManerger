@@ -1,14 +1,14 @@
 package com.stu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+@Component
 public class Quality {
     /**
     * 素质拓展Id
@@ -26,11 +26,9 @@ public class Quality {
     private Double score;
 
     /**
-    * 学生id
+    * 选择学生id
     */
     private Integer studentId;
-    /**
-     * 时间
-     */
+
     private String time;
 }

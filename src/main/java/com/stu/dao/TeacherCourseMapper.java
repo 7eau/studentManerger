@@ -1,8 +1,10 @@
 package com.stu.dao;
 
-import com.stu.entity.Switch;
+import com.stu.entity.TeacherCourse;
+import org.springframework.stereotype.Component;
 
-public interface SwitchMapper {
+@Component
+public interface TeacherCourseMapper {
     /**
      * delete by primary key
      * @param id primaryKey
@@ -15,33 +17,33 @@ public interface SwitchMapper {
      * @param record the record
      * @return insert count
      */
-    int insert(Switch record);
+    int insert(TeacherCourse record);
 
     /**
      * insert record to table selective
      * @param record the record
      * @return insert count
      */
-    int insertSelective(Switch record);
+    int insertSelective(TeacherCourse record);
 
     /**
      * select by primary key
      * @param id primary key
      * @return object by primary key
      */
-    Switch selectByPrimaryKey(Integer id);
+    TeacherCourse selectByPrimaryKey(Integer id);
 
     /**
      * update record selective
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(Switch record);
+    int updateByPrimaryKeySelective(TeacherCourse record);
 
     /**
      * update record
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(Switch record);
+    int updateByPrimaryKey(TeacherCourse record);
 }

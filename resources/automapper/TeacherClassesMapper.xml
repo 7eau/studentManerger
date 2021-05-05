@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stu.dao.TeacherClassesMapper">
+  <resultMap id="BaseResultMap" type="com.stu.entity.TeacherClasses">
+    <!--@mbg.generated-->
+    <!--@Table teacher_classes-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="teacherid" jdbcType="INTEGER" property="teacherid" />
+    <result column="classesid" jdbcType="INTEGER" property="classesid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, teacherid, classesid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_classes
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from teacher_classes
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.TeacherClasses" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into teacher_classes (teacherid, classesid)
+    values (#{teacherid,jdbcType=INTEGER}, #{classesid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.stu.entity.TeacherClasses" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into teacher_classes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherid != null">
+        teacherid,
+      </if>
+      <if test="classesid != null">
+        classesid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherid != null">
+        #{teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="classesid != null">
+        #{classesid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.TeacherClasses">
+    <!--@mbg.generated-->
+    update teacher_classes
+    <set>
+      <if test="teacherid != null">
+        teacherid = #{teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="classesid != null">
+        classesid = #{classesid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.TeacherClasses">
+    <!--@mbg.generated-->
+    update teacher_classes
+    set teacherid = #{teacherid,jdbcType=INTEGER},
+      classesid = #{classesid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

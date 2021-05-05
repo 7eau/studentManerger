@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface UserMapper {
     /**
      * delete by primary key
@@ -29,7 +31,7 @@ public interface UserMapper {
      * @param id primary key
      * @return object by primary key
      */
-    User selectByPrimaryKey(Integer id);
+    User selectByUsername(String username);
 
     /**
      * update record selective

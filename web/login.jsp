@@ -35,9 +35,14 @@
                 <div class="form-group">
                     <lebel for="checkCode" class="col-md-3 control-label">验证码：</lebel>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="checkCode" placeholder="请输入验证码">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="checkCode" placeholder="请输入验证码">
+                            <span class="input-group-btn">
+                                <a href="#" title="点击更换验证码"><img id="checkImg" alt="验证码" src="/stu/user/checkCode.do"></a>
+                            </span>
+                        </div>
                     </div>
-                    <lebel for="checkCode" class="col-md-3"><a href="#"><img id="checkImg" alt="验证码" src="/stu/user/checkCode.do"></a></lebel>
+<%--                    <lebel for="checkCode" class="col-md-2" style="padding: 2px;"></lebel>--%>
                 </div>
                 <div class="form-group">
                     <lebel for="password" class="col-md-3 control-label">身份：</lebel>
@@ -51,10 +56,10 @@
                     </div>
                 </div>
                 <div class="form-group" style="margin-top: 30px;">
-                    <div class="col-md-offset-5">
+                    <div class="col-md-offset-4">
                         <button class="btn btn-primary" id="login">登陆</button>
                         <button class="btn btn-default" id="reset">重置</button>
-                        <button class="btn btn-warning" id="signup">注册</button>
+<%--                        <button class="btn btn-warning" id="signup">注册</button>--%>
                     </div>
                 </div>
             </div>

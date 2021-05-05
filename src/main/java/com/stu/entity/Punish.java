@@ -1,14 +1,14 @@
 package com.stu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+@Component
 public class Punish {
     /**
     * 惩罚id
@@ -24,8 +24,6 @@ public class Punish {
     * 惩罚内容
     */
     private String content;
-    /**
-     * 惩罚时间
-     */
+
     private String time;
 }

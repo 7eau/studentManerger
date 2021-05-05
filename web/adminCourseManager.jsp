@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <li><a href="adminDormiManager.jsp">住宿信息管理</a></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="/stu/user/adminLogout.do">退出系统</a></li>
-                      <li><a href="adminChangePassword.jsp">修改密码</a></li>
+                      <li><a href="#"><div id="changePassword">修改密码</div></a></li>
 				  </ul>
 				</li>
 			  </ul>

@@ -1,7 +1,9 @@
 package com.stu.dao;
 
 import com.stu.entity.Reward;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface RewardMapper {
     /**
      * delete by primary key

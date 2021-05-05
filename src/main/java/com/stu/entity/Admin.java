@@ -1,14 +1,14 @@
 package com.stu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+@Component
 public class Admin {
     /**
     * 管理员id
@@ -29,4 +29,14 @@ public class Admin {
     * 密码
     */
     private String password;
+
+    /**
+    * 管理员类型
+    */
+    private Integer type;
+
+    /**
+    * 教师账户id
+    */
+    private Integer teacherid;
 }
