@@ -7,13 +7,36 @@
  */
 
 $(document).ready(function(){
+    readyForLogin();
     initClick();
 });
+
+// 获取RAS公钥
+var readyForLogin = function () {
+    $.ajax({
+        async:true,    //登陆时关闭异步，否则登陆成功提示不成功
+        url:"/stu/user/getRSAKey.do",
+        type:"GET",
+        data:{
+            code:Math.random()
+        },
+        success:function(result) {
+            if(result.code) {
+                //获取成功
+                $("#pubkey").val(result.pubkey);
+            } else {
+                //获取失败
+                console.log("【login.js/readyForLogin()】获取公钥失败");
+            }
+        }
+    });
+}
 
 
 var initClick = function(){
 
         $("#update").click(function(){
+            var pubkey = $("#pubkey").val();
             var adminName = $("#adminName").val();
             var adminUserName = $("#adminUserName").val();
             var adminId= $("#adminId").val();
@@ -43,6 +66,10 @@ var initClick = function(){
                 return;
             }
 
+            adminOldPassword = encodePwd(pubkey, adminOldPassword);
+            $("#currentPassword").val(adminOldPassword);
+            adminNewPassword = encodePwd(pubkey, adminNewPassword);
+            $("#newPassword").val(adminNewPassword);
 
 
             if(checkOldPassword(adminUserName,adminOldPassword,role)===false)
@@ -114,4 +141,12 @@ var checkOldPassword=function (adminName,adminPassword,role) {
     });
 
     return check;
+}
+
+var encodePwd = function(pubkey, password) {
+    // 加密
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(pubkey);
+    var encryped = encrypt.encrypt(password);
+    return encryped;
 }

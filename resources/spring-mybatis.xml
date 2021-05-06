@@ -36,7 +36,7 @@
     <!-- MapperScannerConfigurer配置 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- basePackage指定要扫描的包，在此包之下的映射器都会被搜索到。可指定多个包，包与包之间用逗号或分号分隔 -->
-        <property name="basePackage" value="com.stu.**.dao,com.stu.dao" />
+        <property name="basePackage" value="com.stu.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- 配置事务管理 -->

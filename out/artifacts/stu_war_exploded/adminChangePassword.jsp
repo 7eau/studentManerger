@@ -43,6 +43,7 @@
                     <lebel for="currentPassword" class="col-md-3 control-label">当前密码：</lebel>
                     <div class="col-md-8">
                         <input type="password" class="form-control" id="currentPassword">
+                        <input type="hidden" class="form-control" id="pubkey" name="pubkey">
                     </div>
                 </div>
 
@@ -74,6 +75,7 @@
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="plugin/easyui/jquery.easyui.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/jsencrypt.js"></script>
 <script src="js/adminChangePassword.js"></script>
 </body>
 </html>
