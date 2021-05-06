@@ -118,12 +118,21 @@ public class UserService {
 
         admin = adminMapper.selectByUsernamne(username);
 
-        if(password.equals(admin.getPassword())) {// 密码正确
+        if(admin != null && password.equals(admin.getPassword())) {// 密码正确
+            // 管理员通用设置
+            result.put("code",true);
             session.setAttribute("adminUserName",admin.getUsername());
             session.setAttribute("adminName",admin.getName());
             session.setAttribute("adminId",admin.getId());
-            result.put("code",true);
-            result.put("url","/index.jsp");
+            session.setAttribute("adminType", admin.getType());
+
+            if(admin.getType() == 3) {//当该管理员是教师
+                session.setAttribute("tid", admin.getTeacherid());
+                result.put("url","/teacherMsg.jsp");
+            } else {//管理员不是教师
+                result.put("url","/index.jsp");
+            }
+
         } else {
             result.put("code",false);
             result.put("msg","管理员用户名或密码错误！");

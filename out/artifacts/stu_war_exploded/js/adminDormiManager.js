@@ -32,6 +32,7 @@ var initDataGrid = function(){
         onLoadSuccess:function(data){
             $("a[name='drom']").linkbutton({text:'住宿操作',plain:true,iconCls:'icon-ok'});
         },
+        singleSelect:true,
         border:false,
         pagination:true,
         pageList:[18,25,30,40,50],

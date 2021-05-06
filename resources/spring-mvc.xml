@@ -18,6 +18,8 @@
     <context:component-scan base-package="com.stu.*.dao" />
     <context:component-scan base-package="com.stu.dao"/>
     <context:component-scan base-package="com.stu.entity"/>
+    <context:component-scan base-package="com.stu.controller"/>
+    <context:component-scan base-package="com.stu.service"/>
 
 
     <!-- 开启SpringMVC注解模式 -->

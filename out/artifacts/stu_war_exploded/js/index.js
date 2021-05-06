@@ -100,6 +100,7 @@ var initDataGrid = function(){
             $("a[name='del']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
             $("a[name='dorm']").linkbutton({text:'住宿',plain:true,iconCls:'icon-man'});
         },
+        singleSelect:true,
         border:false,
 		pagination:true,
 		pageList:[18,25,30,40,50],

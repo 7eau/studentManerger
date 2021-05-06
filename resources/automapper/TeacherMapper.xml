@@ -93,4 +93,58 @@
       email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getStudentScoreOfTeacher" resultType="com.stu.entity.StudentScoreOfTeacher">
+    SELECT
+        course.`name` AS courseName,
+        student.`name` AS studentName,
+        classes.number,
+        classes.`level`,
+        major.`name`AS majorName,
+        stu_course.score,
+        stu_course.student_id AS studentId,
+        stu_course.course_id AS courseId,
+        stu_course.id
+    FROM
+        teacher
+        INNER JOIN
+        teacher_classes
+        ON
+            teacher.id = teacher_classes.teacherid
+        INNER JOIN
+        student
+        INNER JOIN
+        stu_class
+        ON
+            student.id = stu_class.stuId
+        INNER JOIN
+        classes
+        ON
+            stu_class.classId = classes.id AND
+            teacher_classes.classesid = classes.id
+        INNER JOIN
+        major
+        ON
+            classes.majorId = major.id
+        INNER JOIN
+        teacher_course
+        ON
+            teacher.id = teacher_course.teacherId
+        INNER JOIN
+        stu_course
+        ON
+            student.id = stu_course.student_id
+        INNER JOIN
+        course
+        ON
+            teacher_course.courseId = course.id AND
+            stu_course.course_id = course.id
+    WHERE
+        teacher.id = #{param1,jdbcType=INTEGER}
+
+    ORDER BY
+        courseName ASC,
+        studentName ASC,
+        stu_course.score DESC
+    LIMIT #{param2,jdbcType=INTEGER}, #{param3,jdbcType=INTEGER}
+    </select>
 </mapper>

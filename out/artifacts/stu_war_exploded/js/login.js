@@ -21,26 +21,21 @@ var initClick = function(){
         var role = $("input[name='role']:checked").val();
         var checkCode = $("#checkCode").val();
 
-        if(username=='')
-        {
+        if(username==='') {
             $.messager.alert({
                 title:"提示",
                 icon:"error",
                 msg:"请填写用户名！"
             });
             return
-        }
-        else if(username.length<2)
-        {
+        } else if(username.length<2) {
             $.messager.alert({
                 title:"提示",
                 icon:"error",
                 msg:"用户名长度不能小于2！"
             });
             return
-        }
-        else if(username.length>12)
-        {
+        } else if(username.length>12) {
             $.messager.alert({
                 title:"提示",
                 icon:"error",
@@ -49,7 +44,7 @@ var initClick = function(){
             return
         }
 
-        if(password=='')
+        if(password==='')
         {
             $.messager.alert({
                 title:"提示",
@@ -77,6 +72,7 @@ var initClick = function(){
                     $.messager.alert("提示消息",result.msg);
                     $("#password").val("");
                     $("#checkCode").val("");
+                    $("#checkImg").click();
                 }
             }
         });

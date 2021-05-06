@@ -4,16 +4,16 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%
-    if(request.getSession().getAttribute("adminName")==null)
+    if(request.getSession().getAttribute("adminName")==null)   //没有登陆
     {
         out.print("<script type=\"text/javascript\"> alert(\"请先登陆!\");window.location=\"/login.jsp\" </script>");
     }
-    if(!request.getSession().getAttribute("adminType").equals(1))
+    if(!request.getSession().getAttribute("adminType").equals(3))
     {
         out.print("<script type=\"text/javascript\"> alert(\"抱歉，您没有权限!\");window.location=\"/login.jsp\" </script>");
     }
-
 %>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -40,14 +40,17 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">学生信息管理系统--管理员</a>
+            <a class="navbar-brand" href="#">学生信息管理系统--教师</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎您：管理员<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        欢迎您：<%=request.getSession().getAttribute("adminName")%>
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><div id="changePassword">修改密码</div></a></li>
                         <li role="separator" class="divider"></li>
@@ -58,56 +61,44 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
 <div class="container-fluid">
     <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked">
-            <li role="presentation"><a href="index.jsp">学生信息管理</a></li>
-            <li role="presentation"><a href="adminCourseManager.jsp">课程信息管理</a></li>
-            <li role="presentation" class="active"><a href="adminAFLManager.jsp">请假信息管理</a></li>
-            <li role="presentation"><a href="adminDormiManager.jsp">住宿信息管理</a></li>
+            <li role="presentation"><a href="teacherMsg.jsp">个人资料</a></li>
+            <li role="presentation" class="active"><a href="studentScore.jsp">学生成绩信息</a></li>
         </ul>
     </div>
-
     <div class="col-md-10">
         <div>
             <ol class="breadcrumb">
                 <li><a href="javascript:void(0)">首页</a></li>
-                <li class="active">请假信息管理</li>
+                <li class="active">学生成绩信息</li>
             </ol>
         </div>
-
         <div id="content">
         </div>
-
         <div id="toolBar" class="form-horizontal" style="width:100%; margin-bottom:0;vertical-align: middle;">
-            <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;">
-
-            </div>
             <div id="searchBar" class="form-group" style="margin-bottom:0;">
                 <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
-                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、请假理由" id="searchBarText">
+                    <input type="text" class="form-control form-inline input-sm" placeholder="请输入学生名称" id="searchBarText">
                 </div>
                 <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
             </div>
         </div>
-
-
-        <div id="approveStuAFLBox" style="padding:20px; display: none;" class="form-horizontal">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="alert alert-info" role="alert" style="padding-top: 10px">
-                        批准表示你同意这次请假, 批准以后不可取消!
-                    </div>
-                </div>
-                <div id="hidden">
-                    <input type="hidden" class="form-control" id="aflId" name="aflId">
-                    <input type="hidden" class="form-control" id="aflstuId" name="stuId">
-                </div>
+        <div id="jj" style="padding:20px;display: none;" class="form-horizontal">
             <div class="form-group">
-                <div class="col-md-offset-2">
-                    <button id="subApproveStuAFL" class="btn btn-success">批准</button>
-                    <button id="cancelApproveStuAFL" class="btn btn-danger">取消</button>
+                <label for="grade" class="col-md-3 control-label">成绩:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="grade" name="grade" placeholder="请输入成绩">
+                    <input type="hidden" class="form-control" id="tid" name="tid" value="<%=request.getSession().getAttribute("tid")%>">
+                    <input type="hidden" class="form-control" id="id" name="id">
+                    <input type="hidden" class="form-control" id="score" name="score">
+                    <input type="hidden" class="form-control" id="stuName" name="stuName">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-5">
+                    <button id="subGrade" class="btn btn-primary">提交</button>
                 </div>
             </div>
         </div>
@@ -121,6 +112,6 @@
 <script src="js/bootstrap-switch.min.js"></script>
 <script src="plugin/easyui/jquery.easyui.min.js"></script>
 <script src="plugin/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script src="js/adminAFLManager.js"></script>
+<script src="js/studentScore.js"></script>
 </body>
 </html>

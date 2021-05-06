@@ -1,7 +1,10 @@
 package com.stu.dao;
 
+import com.stu.entity.StudentScoreOfTeacher;
 import com.stu.entity.Teacher;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface TeacherMapper {
@@ -46,4 +49,13 @@ public interface TeacherMapper {
      * @return update count
      */
     int updateByPrimaryKey(Teacher record);
+
+    /**
+     *
+     * @param tid
+     * @param ignore
+     * @param total
+     * @return
+     */
+    List<StudentScoreOfTeacher> getStudentScoreOfTeacher(Integer tid, Integer ignore, Integer total);
 }

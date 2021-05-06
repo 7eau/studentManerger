@@ -3,7 +3,17 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%
+    if(request.getSession().getAttribute("adminName")==null)
+    {
+        out.print("<script type=\"text/javascript\"> alert(\"请先登陆!\");window.location=\"/login.jsp\" </script>");
+    }
+    if(!request.getSession().getAttribute("adminType").equals(1))
+    {
+        out.print("<script type=\"text/javascript\"> alert(\"抱歉，您没有权限!\");window.location=\"/login.jsp\" </script>");
+    }
 
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -39,14 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎您：管理员<span class="caret"></span></a>
 				  <ul class="dropdown-menu">
-                      <li><a href="index.jsp">学生信息管理</a></li>
-                      <li><a href="adminCourseManager.jsp">课程信息管理</a></li>
-                      <li><a href="adminAFLManager.jsp">请假信息管理</a></li>
-                      <li><a href="adminDormiManager.jsp">住宿信息管理</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="/stu/user/adminLogout.do">退出系统</a></li>
                       <li><a href="#"><div id="changePassword">修改密码</div></a></li>
-				  </ul>
+                      <li role="separator" class="divider"></li>
+                      <li class="text-warning"><a href="/stu/user/adminLogout.do">退出系统</a></li>
+                  </ul>
 				</li>
 			  </ul>
 			</div><!-- /.navbar-collapse -->

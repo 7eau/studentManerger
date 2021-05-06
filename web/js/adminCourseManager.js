@@ -37,6 +37,7 @@ var initDataGrid = function(){
             $("a[name='inputGrade']").linkbutton({text:'成绩',plain:true,iconCls:'icon-save'});
             $("a[name='del']").linkbutton({text:'删除',plain:true,iconCls:'icon-cut'});
         },
+        singleSelect:true,
         border:false,
         pagination:true,
         pageList:[18,25,30,40,50],
@@ -303,6 +304,7 @@ var showStudent = function(id,courseName){
             {field:'email',title:'邮箱',width:'150',align : 'center'},
             {field:'address',title:'联系地址',width:'200',align : 'center'}
             ]],
+        singleSelect:true,
         border:false,
         pagination:true,
         pageList:[10,20,30,40,50],
@@ -407,6 +409,7 @@ var inputGrade = function(courseId){
         onLoadSuccess:function(data){
             $("a[name='inputStuGrade']").linkbutton({text:'录入',plain:true,iconCls:'icon-add'});
         },
+        singleSelect:true,
         border:false,
         pagination:true,
         pageList:[8,16,30],

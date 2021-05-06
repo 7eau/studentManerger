@@ -54,6 +54,7 @@ var initDataGrid = function(){
             $("a[name='approveAFL']").linkbutton({text:'批准',plain:true,iconCls:'icon-ok'});
             $("a[name='delAFL']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
         },
+        singleSelect:true,
         border:false,
         pagination:true,
         pageList:[18,25,30,40,50],
@@ -184,7 +185,7 @@ var initClick = function(){
     //搜索按钮点击事件
     $("#searchBarBtn").click(function(){
         var keywords = $("#searchBarText").val();
-        $("#content").datagrid("load",{keywords:keywords});
+        $("#content").datagrid("reload",{keywords:keywords});
     });
     // 修改密码窗格
     $("#changePassword").click(function (){
