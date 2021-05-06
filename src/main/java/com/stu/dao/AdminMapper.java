@@ -31,7 +31,14 @@ public interface AdminMapper {
      * @param id primary key
      * @return object by primary key
      */
-    Admin selectByUsernamne(String username);
+    Admin selectByUsername(String username);
+
+    /**
+     * select by primary key
+     * @param id primary key
+     * @return object by primary key
+     */
+    Admin selectByPrimaryKey(Integer id);
 
     /**
      * update record selective

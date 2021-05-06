@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import sun.security.rsa.RSAUtil;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -17,6 +18,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +38,7 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    private Map<String,Object> result;
     /**
      * 用户登陆
      * @param role
@@ -44,7 +50,7 @@ public class UserController {
      */
     @RequestMapping("/userLogin.do")
     public void userLogin(String checkCode, String role , String username, String password , HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String,Object> result;
+
         result = userService.Login(request,role,username,password, checkCode);
         ResponseUtil.returnJson(result,response);
     }
@@ -114,4 +120,11 @@ public class UserController {
         }
 
     }
+
+    @RequestMapping("/getRSAKey.do")
+    public void getRSAKey(HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException, IOException {
+        result = userService.getRSAKey(request.getSession());
+        ResponseUtil.returnJson(result, response);
+    }
+
 }

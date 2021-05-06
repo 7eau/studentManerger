@@ -15,7 +15,7 @@
     <!--@mbg.generated-->
     id, username, `name`, `password`, `type`, teacherId
   </sql>
-  <select id="selectByUsernamne" parameterType="string" resultMap="BaseResultMap">
+  <select id="selectByUsername" parameterType="string" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
@@ -104,4 +104,11 @@
       teacherId = #{teacherid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from `admin`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

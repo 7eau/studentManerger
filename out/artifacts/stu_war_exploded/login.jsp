@@ -30,6 +30,7 @@
                     <lebel for="password" class="col-md-3 control-label">密码：</lebel>
                     <div class="col-md-8">
                         <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                        <input type="hidden" class="form-control" id="pubkey" name="pubkey">
                     </div>
                 </div>
                 <div class="form-group">
@@ -69,6 +70,7 @@
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="plugin/easyui/jquery.easyui.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/jsencrypt.js"></script>
 <script src="js/login.js"></script>
 </body>
 </html>

@@ -28,10 +28,17 @@ public interface UserMapper {
 
     /**
      * select by primary key
-     * @param id primary key
+     * @param username username
      * @return object by primary key
      */
     User selectByUsername(String username);
+
+    /**
+     * select by primary key
+     * @param id primary key
+     * @return object by primary key
+     */
+    User selectByPrimaryKey(Integer id);
 
     /**
      * update record selective
