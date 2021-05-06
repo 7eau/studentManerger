@@ -34,6 +34,8 @@ var initMsg = function(){
             }else{
                 $("#resetPassword").css("display","none");
             }
+            var classes = result.data.level + "级 " + result.data.majorName + " " + result.data.number + "班";
+            $("#classes").val(classes);
         }
     });
 };

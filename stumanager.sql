@@ -11,7 +11,7 @@
  Target Server Version : 50527
  File Encoding         : 65001
 
- Date: 06/05/2021 13:51:10
+ Date: 07/05/2021 02:13:13
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `admin`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
   `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '管理员账号',
   `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '管理员姓名',
-  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
   `type` int(11) NULL DEFAULT NULL COMMENT '管理员类型',
   `teacherId` int(11) NULL DEFAULT NULL COMMENT '教师账户id',
   PRIMARY KEY (`id`) USING BTREE,
@@ -38,27 +38,27 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin', '管理员', '123', 1, NULL);
-INSERT INTO `admin` VALUES (2, 'classadmin', '管理员', 'admin', 2, NULL);
-INSERT INTO `admin` VALUES (3, 'teacher', '管理员', 'admin', 3, NULL);
-INSERT INTO `admin` VALUES (4, 'dormitory', '管理员', 'admin', 4, NULL);
-INSERT INTO `admin` VALUES (5, 'teacher1', '管理员', '123', 3, 1);
-INSERT INTO `admin` VALUES (6, 'teacher2', '管理员', '123', 3, 2);
-INSERT INTO `admin` VALUES (7, 'teacher3', '管理员', '123', 3, 3);
-INSERT INTO `admin` VALUES (8, 'teacher4', '管理员', '123', 3, 4);
-INSERT INTO `admin` VALUES (9, 'teacher5', '管理员', '123', 3, 5);
-INSERT INTO `admin` VALUES (10, 'teacher6', '管理员', '123', 3, 6);
-INSERT INTO `admin` VALUES (11, 'teacher7', '管理员', '123', 3, 7);
-INSERT INTO `admin` VALUES (12, 'teacher8', '管理员', '123', 3, 8);
-INSERT INTO `admin` VALUES (13, 'teacher9', '管理员', '123', 3, 9);
-INSERT INTO `admin` VALUES (14, 'teacher10', '管理员', '123', 3, 10);
-INSERT INTO `admin` VALUES (15, 'teacher11', '管理员', '123', 3, 11);
-INSERT INTO `admin` VALUES (16, 'teacher12', '管理员', '123', 3, 12);
-INSERT INTO `admin` VALUES (17, 'teacher13', '管理员', '123', 3, 13);
-INSERT INTO `admin` VALUES (18, 'teacher14', '管理员', '123', 3, 14);
-INSERT INTO `admin` VALUES (19, 'teacher15', '管理员', '123', 3, 15);
-INSERT INTO `admin` VALUES (20, 'teacher16', '管理员', '123', 3, 16);
-INSERT INTO `admin` VALUES (21, 'teacher17', '管理员', '123', 3, 17);
+INSERT INTO `admin` VALUES (1, 'admin', '管理员', 'kbdvYPp3TyR5K/LSdZY2DdhJer9f64zZWQX7ANn9oTPd1gdON24xg2FrTYJzMD6H3igiRnGS2N56VZZ1tz8+msGBsLNpVJdNSA5QpF1Ly6LBI2G+GvFHVDd9pwKXOOddi94uQJ7kRuMutBY7vIVZqgrGfnr1CBn7ajVoRBeKY1c=', 1, NULL);
+INSERT INTO `admin` VALUES (2, 'classadmin', '管理员', 'T8kL0r9lvkOvexPst01wLld1GCs7/DdUa+dJHfq2ZLxWtluXSEEnnpWOZS+GcK7MHuruY7+G1ydp/g06Vq6pqHczp+Wrsgvm8O71/0/h2KRuTxtAX1jVHSaieRdYn31wm7R3dLuO4F3d6Wqr/qxPnVJMiOxLRBGsrCxKp4vJ2mo=', 2, NULL);
+INSERT INTO `admin` VALUES (3, 'teacher', '管理员', 'Fqr7b3WghSaFJO+/HklkRop+dq9PCszRheVedrYhHWQEzJKaNCLCNCvVpDC3uhU8ZbIW8jhZ8jPE/Gw2GsUvuW2zGb5QWd1cKkEoUDhJZF83FUoj4cg2/cLOfqmY3egFq6w8Ho84cGqiv6zh6+PiD/mKvT+FdlOTykxqn/EE3T4=', 3, NULL);
+INSERT INTO `admin` VALUES (4, 'dormitory', '管理员', 'U65UU49Xz7W12mVV2c1TDtPxtnPye1tj4vqZBM6BUMsiLEKMFkMab/tVEcWubVEdMb21sRwzhOOwL1/hIdcOsWvZCh15yFZlxpuqIWpQ20D3JawdgzGDlDHBBPSL5r7YGPxfu5a4ZBUCvLdf8wFDiXqn21iH8tr1Gw1t0ztSp5s=', 4, NULL);
+INSERT INTO `admin` VALUES (5, 'teacher1', '管理员', 'KA0yiGCuxT9OIS3inzA2TxAt62iqvDl0VZDua9n3TBNkMpbYtjSYGy8iEBQBxvzwDEoU2ORBaAa5q5lXCX01es+l2z1dWOx8RJX3t5+kx1SMiaHf614lxOP68mSN9VYualPnAzz6KMCyWKe4rIzsIyj9nZ9mqIylXqSbOyHhUuc=', 3, 1);
+INSERT INTO `admin` VALUES (6, 'teacher2', '管理员', 'DKl5s8a7qYCu+FsvltYM6ZiRHJ9+/hS+4CV8VoDKXEJLfG/hdPkxkwEAUnbWEMPrtfWQWeBhIVBmJxLvFLYA04CIzCwrrpADD9F4lcywn6jD4oN9MvZ8NJTcAE6QDuVbcTTRYvtkn9cgC9ROWxHtf/LcZ3/jXbbCFLj8aDbsYlM=', 3, 2);
+INSERT INTO `admin` VALUES (7, 'teacher3', '管理员', 'PTYSohnzQWCwsm7Bb0WN/N1X5moSm8QgYnx12APuAiGtz0xpJGRcuASwutm28sdqbaRjkzBsPSHn6kp7eW7GocVXypKC7u0FRgV3+G2ySG/wLwVbp4Tlp2ghb/ISi51TzAYfMrMEgj6DTJhwJ8V/hoFbOuTv4ekxvehM0eGacIg=', 3, 3);
+INSERT INTO `admin` VALUES (8, 'teacher4', '管理员', 'h/9xaDkyS+2YMeXWLV2tRFCXw0bSaZfWZ2P2eFxNrL90q0QB6ieqLx3JJUMYvZ5fGLSsZCCdz2Dues0kNTF87on88vUr7HEFvavU65jNfhfzYE6sq8FcXunBkPRkOFV9ezdvbEGBtJk2HXUAKT4Uj+zdpAPa311lMtqDlYdisF0=', 3, 4);
+INSERT INTO `admin` VALUES (9, 'teacher5', '管理员', 'G1fNzRFvdWFPtfFCTtRwJJV0Zrs6zDpGLwqGLjKMuZmOvNyjtM7NDDDmyPiKcs/AVeI4w59IxI+Kpk4cs0zWB1O1tOzedAT31kNor9jsG3tAj6yVzyD8eS3QAz6Cxm4jcxMwBv2zzNCzUOfm1kAs8MQgbPV0Dk8djrwUhD33JU4=', 3, 5);
+INSERT INTO `admin` VALUES (10, 'teacher6', '管理员', 'bJm6aXLRZWuLwBLnTEL+I3OC9rKvXqkd+IeVI99Wg2flF+pLiZVNipi39LU5CiYFDsnv9vZO/VwZLRPOvZ8ZucPDaC2N71uNkZylXcFWzsdO59IfLT2h5qo34vDPq+W9lB9mc6L3Jl7gBgyrayjsLRcEhKt9WdtRH2jHs47Ri8U=', 3, 6);
+INSERT INTO `admin` VALUES (11, 'teacher7', '管理员', 'rkLdc2HUFzlxRhat2c6wMqde+ePpISMHo5uGAO2bo1WDpa4FSY98HaIp/3QWO16qRsxzyIFqyq/Zan9idpHJQLHimy46vvPOrj6NfTjm3CXKcFBKoymPwGB83IZoq2yFQLFE+yvsC1kAc0nZp1liOxNLLH93+2xplObwy48x9H8=', 3, 7);
+INSERT INTO `admin` VALUES (12, 'teacher8', '管理员', 'WE7Um9vHJFFaoJN7xQhvuwF0ZqnjdlgbCfYMwh5wDI8QYsJWMH8ycXRSxC2vh/XfMNrV+qsiPiGD05q3eyKMT5b5EMoDRgAb0+qlUyK25RNWJ+Bbw4Ul3wX9ZSv4ED6U6HpCowFXE+5gs9fedK4C++ErbvAmkmwSAHTrSIzqoDE=', 3, 8);
+INSERT INTO `admin` VALUES (13, 'teacher9', '管理员', 'G3EICxdP7+B2ZzkpmFEhd7YGwWZZFa0Py8/9/Yd43DxB+k6Gp+pYSG/3jf4anHrQObTDKljv4+d6X66aWUZmNMxL36HtXQDJhO23lnnJNbq6MZUwtxvO2jCgxakc4KIt71X+Ij6Yf/aVjzRwWKBRHvljqKBkp+u12aYj24HL9co=', 3, 9);
+INSERT INTO `admin` VALUES (14, 'teacher10', '管理员', 'BkqxwKJCZpQltDzz0SD11eHdlSa/DKVnfj0Vjhl/bDFAn1AxkneZTFchwJGelL7ghKbtaqCguuhDldnoHZGCcd/dMqIVQhTszwHqyWdXtS3EEBRePeDkCwhWTTMnMZn1RdWT1Z2W2CqL20Jh+TqdHP4U+WHrZgs7m8JLJ2+SJUE=', 3, 10);
+INSERT INTO `admin` VALUES (15, 'teacher11', '管理员', 'SQ7slFAopYiVUYQspMEl7MHc1ImoeAbvl0W7l+IJRrOW2QvGZcy6GY9/LwWmy7O2OTLd/Y/zWZHwOzpnnN1igJnqwG9PXUB0BvqViVI+CU3PtUu6PMIpeL51/ogZF3LDq9HXzXTBm+AlZ/gZ0hOLFEEO26utjKyU28sSFhHhgd8=', 3, 11);
+INSERT INTO `admin` VALUES (16, 'teacher12', '管理员', 'iw0wUYDDorWvWp/PQdI4GcWwUshOnrpTjcmY4mq4c7l1alKWZMNYhtnTDUUXsjI09aibvZlR7ZZnfjHg6vW50brIYdeVUVw/px+uJRFkp/EwnFn0zCThG3UGbBtarH4fEwMnw2t2RIrtlyMJGhX7uSfsU1cRxiuw1tDjHbl9XYM=', 3, 12);
+INSERT INTO `admin` VALUES (17, 'teacher13', '管理员', 'pJk+tYU0XGdih0zrKpOxWm9SuJvJE/B9aP4LvWOhF3DRsPdThqrxeG2VpeBGXky3AB7N6YVCWqgDp13DvbgDl45Ijx+SwHSnTlY4jis3n57xjKG6g0aE6HxwJp0q5GcNqyDnhcdsj4WA4AJ9IVOA/5RThpnpjcRXdle+v3TcH5Y=', 3, 13);
+INSERT INTO `admin` VALUES (18, 'teacher14', '管理员', 'NePR81B/41Wttu2FN4dGd8BewLV/0Vkkbhan+TiW64hsJj0b0XSUca3jGih8+RnCuaSS7S7klCM4OneOhs8lFSb4Z0+d61rZtiVurAlrOc66MUqPU6RdL4ZZJffE+MJyaHLtO3aOrU4wdSJcRtb7WnjCtR9K4bVY0MDcUkp3obY=', 3, 14);
+INSERT INTO `admin` VALUES (19, 'teacher15', '管理员', 'skWCJU6FD3Ny6iTsVTFOdlr+r9dZnl/ziA9+2669OEAnEu0fH644b1JurK1OoB1igI9Jq2+1hwXFyGP6sks1iu+1n+5wWvJie/opsfOu7EzfBOBRPnnuuy0s3A8Am0zV9eMm37/+HKscTFuyuJ53fLxv1WwigUgnzPuZrn/Ll0o=', 3, 15);
+INSERT INTO `admin` VALUES (20, 'teacher16', '管理员', 'lusr3ncj5nWcDssHWnGVQo8uVCW2AWdPKVPFXHgb/S0A0/LlnCCZonCfrZ0U1bcYNNsEuwQko5zNxLEFzlNIcT9rY2EQ4uL8JPPVeshwBcfJc2AvTKHnf2s30Q6YSuyVkUKGVemuHbDO+OK/nzooNNeHlPfe2oKwzcX+bqxWp/A=', 3, 16);
+INSERT INTO `admin` VALUES (21, 'teacher17', '管理员', 'n2DjPlwTvxtsbH/Ge6/LLgZC/v+SoLtD3iaafmb44hyPiTBbobit7qJ3EXyYRFlZNMQvYeHf5qT7Kmu/6label0f/4n4sBmHbvnez+KXfZcTutBT3GpvwiosrbcFuigozid2Nd1CHM17/roZhFCCsRNEc8CV27osKobvCoq8BhY=', 3, 17);
 
 -- ----------------------------
 -- Table structure for admin_type
@@ -535,7 +535,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
   `stuId` int(11) NULL DEFAULT NULL COMMENT '学生id',
   `reset` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE,
@@ -546,11 +546,11 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (6, '17050506116', '123', 34, '1');
-INSERT INTO `user` VALUES (7, '123', '123', 33, '1');
-INSERT INTO `user` VALUES (9, '17060606125', '456123', 37, '1');
-INSERT INTO `user` VALUES (10, '17050506126', '123456', 35, '0');
-INSERT INTO `user` VALUES (11, '456', '123', 38, '0');
-INSERT INTO `user` VALUES (12, 'lyh', '123456', 36, '0');
+INSERT INTO `user` VALUES (6, '17050506116', 'lMbemLtw9saJrNZzw7MTiDj5JLtgprgnPrck70ffHTjzvQef0uW5n2a8JSxfdK+ftSMgHPvu2bV8KRuRhbBnP1tZvpNJLYa7aA3AgAPDMW7XzzoEpgJU0gIgatdgoVfLufNqC1sU6eI6fP1V/3wYdf9dxLc/4bq96U9t7QJwVJA=', 34, '1');
+INSERT INTO `user` VALUES (7, '123', 'nyRHXlt+CwENsUR/vVRzQkW4/8b0SY2M7l/KNX875JVmhUyG3cKAbLxKChytw5S/kuZZLQ2QftJjDN/aWUEaIyFeMMfZ1M2cWWFIGP2rCiPdS0vjqEH8ON9WPvqV7D9kFt0cg0+yq4c5jLsGce2F5xhv+6/X7Xyy3LKwe5cuzJ8=', 33, '1');
+INSERT INTO `user` VALUES (9, '17060606125', 'mrWU7P+oZG054QxJinF7tsmXG5KCHvwfviIB0HlvacnshEBFF/J0qc8ULrHPyEZ9EksCg7H6nhMakL+PWg2+VWSrnGqjHEKfOz4LDRsa1MlZFmf1KFleWXKm4iQBeyAiF5k5HxvLhiPg0zdzfQ9ya/HeJN3qwzYCSZ95uJwjJ6k=', 37, '1');
+INSERT INTO `user` VALUES (10, '17050506126', 'fcx+LC48khyLpi+y7HQOSyXru9b16QDvRQSkSCluX3hAEy1gjltqYnW/jT+ZHh5dLRFkYFNpj0az82iQ/k/+r41ayNfTlaGa9A1oUcfCiXYShlQogd4MbyMI8U3uk7n8hVDvpwTbxymUi6k+lSrnXsXRYeNxDKem3oy9uU0u9Eo=', 35, '0');
+INSERT INTO `user` VALUES (11, '456', 'aBSubHv/eEE/w6RdPROPXg/wbtCRu21LwffwgbT6GgeI2OH+Gl2KUwTcQlya9LeKDU85AGS+EiFjHWV3G62L5xluP050K18JW3BFKYTrZLt128tF31VQL5jlzYypmKT9hl4WDoB27VeKZPvplaLWj2HDC3f/2iwwkh5WyrKNc90=', 38, '0');
+INSERT INTO `user` VALUES (12, 'lyh', 'uQSGs0a+amsi1u3nST1bS5pHZAq1lkomhLZOi5nAL8Pp/lEM+UO1g9CMrZK8xi1Krr6To6M+2vmi0GxSqa7P+RzHouL2sW+9mPD0fhUkhJ/uyX8BgHEkbL72vT0Yf/JVocWTOjTvEaYgdjTDpcwRRg4TF7mzJdHsmS9xeeddllU=', 36, '0');
 
 SET FOREIGN_KEY_CHECKS = 1;

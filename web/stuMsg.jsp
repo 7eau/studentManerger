@@ -86,6 +86,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="classes" class="col-md-2 control-label">班级:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" disabled id="classes" name="classes">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="idcard" class="col-md-2 control-label">身份证:</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" id="idcard" name="Idcard">
