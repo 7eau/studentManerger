@@ -52,6 +52,8 @@
                         欢迎您：<%=request.getSession().getAttribute("userName")%><span class="caret"></span></a>
                     <input type="hidden" id="userId" value="<%=request.getSession().getAttribute("userId")%>">
                     <ul class="dropdown-menu">
+                        <li><a href="#"><div id="changePassword">修改密码</div></a></li>
+                        <li role="separator" class="divider"></li>
                         <li><a href="/stu/user/userLogout.do">退出系统</a></li>
                     </ul>
                 </li>

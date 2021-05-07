@@ -52,6 +52,8 @@
                         欢迎您：<%=request.getSession().getAttribute("userName")%><span class="caret"></span></a>
                     <input type="hidden" id="userId" value="<%=request.getSession().getAttribute("userId")%>">
                     <ul class="dropdown-menu">
+                        <li><a href="#"><div id="changePassword">修改密码</div></a></li>
+                        <li role="separator" class="divider"></li>
                         <li><a href="/stu/user/userLogout.do">退出系统</a></li>
                     </ul>
                 </li>
@@ -83,6 +85,12 @@
                 <label for="name" class="col-md-2 control-label">姓名:</label>
                 <div class="col-md-8">
                     <input type="text" class="form-control" disabled id="name" name="Name" value="<%=request.getSession().getAttribute("userName")%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="classes" class="col-md-2 control-label">班级:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" disabled id="classes" name="classes">
                 </div>
             </div>
             <div class="form-group">

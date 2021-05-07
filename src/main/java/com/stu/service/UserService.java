@@ -83,7 +83,7 @@ public class UserService {
      * @param password  密码
      * @return
      */
-    private Map<String, Object> studentLogin(HttpSession session, String username, String password) {
+    public Map<String, Object> studentLogin(HttpSession session, String username, String password) {
         Map<String,Object> result = new HashMap<String,Object>();
         /**
          * 一、存在该学生
@@ -99,6 +99,7 @@ public class UserService {
             if (getPwd(password).equals("123456")) {    //未重置密码
                 session.setAttribute("defaultPass",true);
             }
+            session.setAttribute("stuUsername", user.getUsername());
             session.setAttribute("userName", student.getName());
             session.setAttribute("userId",stuId);
             result.put("code",true);
@@ -130,9 +131,13 @@ public class UserService {
             session.setAttribute("adminId",admin.getId());
             session.setAttribute("adminType", admin.getType());
 
-            if(admin.getType() == 3) {//当该管理员是教师
+
+            Integer type = admin.getType();
+            if(type == 3) {//当该管理员是教师
                 session.setAttribute("tid", admin.getTeacherid());
                 result.put("url","/teacherMsg.jsp");
+            } else if (type == 4) {// 宿舍管理员
+                result.put("url","/dormiManager.jsp");
             } else {//管理员不是教师
                 result.put("url","/index.jsp");
             }
@@ -144,19 +149,21 @@ public class UserService {
         return result;
     }
 
-    public void UserLogout(HttpServletRequest request, HttpServletResponse response) throws IOException
+    public void UserLogout(boolean isDirect,HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         HttpSession session=request.getSession();
 
-        if(session.getAttribute("userName")!=null)
+        if(session.getAttribute("userId")!=null)
         {
-            session.removeAttribute("userName");
+            session.removeAttribute("userId");
             session.invalidate();
         }
-        response.sendRedirect("/login.jsp");
+        if (isDirect) {
+            response.sendRedirect("/login.jsp");
+        }
     }
 
-    public void AdminLogout(HttpServletRequest request, HttpServletResponse response) throws IOException
+    public void AdminLogout(boolean isDirect, HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         HttpSession session=request.getSession();
         if(session.getAttribute("adminName")!=null)
@@ -164,17 +171,18 @@ public class UserService {
             session.removeAttribute("adminName");
             session.invalidate();
         }
-        response.sendRedirect("/login.jsp");
+        if (isDirect) {
+            response.sendRedirect("/login.jsp");
+        }
+    }
+
+    public void updateStudentPassword(String stuID, String password) {
+        userDao.updateStudentPassword(stuID, password);
     }
 
     public void updateAdminPassword(String adminId,String newPasswd)
     {
         userDao.updateAdminPassword(adminId,newPasswd);
-    }
-
-    public void UserSignUp(HttpServletRequest request, String username, String password, String ID,String phone,String gender)
-    {
-
     }
 
     public Map<String, Object> getRSAKey(HttpSession session){

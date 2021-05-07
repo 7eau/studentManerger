@@ -55,7 +55,7 @@ public class UserController {
      */
     @RequestMapping("/userLogout.do")
     public void userLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        userService.UserLogout(request,response);
+        userService.UserLogout(true,request,response);
     }
 
     /**
@@ -63,7 +63,7 @@ public class UserController {
      */
     @RequestMapping("/adminLogout.do")
     public void adminLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        userService.AdminLogout(request,response);
+        userService.AdminLogout(true,request,response);
     }
 
     /**
@@ -76,7 +76,36 @@ public class UserController {
         result.put("msg","密码修改成功! 请使用新密码登陆!");
         result.put("code",true);
         ResponseUtil.returnJson(result,response);
+        userService.AdminLogout(false,request, response);
     }
+
+    /**
+     * 学生密码修改
+     */
+    @RequestMapping("/updateStudentPassword.do")
+    public void updateStudentPassword(String stuId,String newPassword,HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String,Object> result = new HashMap<String,Object>();
+        userService.updateStudentPassword(stuId, newPassword);
+        result.put("msg","密码修改成功! 请使用新密码登陆!");
+        result.put("code",true);
+        ResponseUtil.returnJson(result,response);
+        userService.UserLogout(false, request, response);
+    }
+
+    /**
+     * 验证学生账号密码
+     * @param username
+     * @param password
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/checkStuPwd.do")
+    public void checkStudentPassword(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        result = userService.studentLogin(request.getSession(), username, password);
+        ResponseUtil.returnJson(result, response);
+    }
+
 
     @RequestMapping("/checkCode.do")
     public void getCheckCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
