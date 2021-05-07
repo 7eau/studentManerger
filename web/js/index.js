@@ -745,6 +745,7 @@ var initClick = function(){
             title: title,
             onClose: function () {
                 $(this).dialog('destroy');//后面可以关闭后的事件
+                window.location.reload();
             }
         });
         win.dialog('open');

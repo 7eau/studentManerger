@@ -96,9 +96,9 @@ var initClick = function(){
                     if(result.code){
                         $.messager.confirm("提示",result.msg,function(r){
                             if(r){
-                                window.parent.$("#msgwindow").dialog('destroy');
+                                window.parent.$("#msgwindow").dialog('close');
                             }else{
-                                window.parent.$("#msgwindow").dialog('destroy');
+                                window.parent.$("#msgwindow").dialog('close');
                             }
                         });
                     }else{

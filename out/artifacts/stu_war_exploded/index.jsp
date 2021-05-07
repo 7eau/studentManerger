@@ -5,11 +5,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <%
-    if(request.getSession().getAttribute("adminName")==null)
+    if(request.getSession().getAttribute("adminName")==null || request.getSession().getAttribute("adminType") == null)
     {
         out.print("<script type=\"text/javascript\"> alert(\"请先登陆!\");window.location=\"/login.jsp\" </script>");
     }
-    if(!request.getSession().getAttribute("adminType").equals(1))
+    if(request.getSession().getAttribute("adminType") != null && !request.getSession().getAttribute("adminType").equals(1))
     {
         out.print("<script type=\"text/javascript\"> alert(\"抱歉，您没有权限!\");window.location=\"/login.jsp\" </script>");
     }
