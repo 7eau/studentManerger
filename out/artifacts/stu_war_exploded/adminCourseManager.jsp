@@ -30,6 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+      <link href="css/update.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">
 	<link href="plugin/easyui/themes/icon.css" rel="stylesheet">
 	<link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
@@ -85,12 +86,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        <input type="checkbox" name="my-checkbox" id="courseSwitch">
                    </div>
 			   </div>
-			   <div id="searchBar" class="form-group" style="margin-bottom:0;">
-				   <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
-					   <input type="text" class="form-control form-inline input-sm" placeholder="请输入课程名称" id="searchBarText">
-				   </div>
-				   <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
-			   </div>
+<%--			   <div id="searchBar" class="form-group" style="margin-bottom:0;">--%>
+<%--				   <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">--%>
+<%--					   <input type="text" class="form-control form-inline input-sm" placeholder="请输入课程名称" id="searchBarText">--%>
+<%--				   </div>--%>
+<%--				   <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>--%>
+<%--			   </div>--%>
 		   </div>
            <div id="dd" style="padding: 20px;display: none">
                <div class="form-horizontal" id="addForm">

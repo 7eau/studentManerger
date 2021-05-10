@@ -26,8 +26,9 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="css/mycss.css" rel="stylesheet">
-    <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
+    <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet"/>
     <link href="plugin/easyui/themes/icon.css" rel="stylesheet">
+    <link href="css/update.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default">

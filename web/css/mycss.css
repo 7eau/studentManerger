@@ -1,9 +1,20 @@
 /* CSS Document */
 .left-nav{width: 200px;height: 100%;}
-.login-box{width: 500px;height:400px;border: 1px solid #2f2f2f;position: absolute;left: 50%;
+.login-box{width: 500px;height:400px;box-shadow: 5px 5px 10px grey;position: absolute;left: 50%;
     top: 50%;margin-left: -250px;margin-top: -200px;padding:20px;}
 
 .signup-box{width: 500px;height:250px;border: 1px solid #2f2f2f;position: absolute;left: 50%;
     top: 50%;margin-left: -250px;margin-top: -160px;padding:10px;}
 
 .mybox{margin-top: 20px;}
+
+.breadcrumb {
+    background-color: rgba(0, 0, 0 , 0);
+}
+.navbar-default {
+    background-color: rgba(0, 0, 0 , 0);
+    border-color: rgba(0, 0, 0 , 0);
+}
+
+
+

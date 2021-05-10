@@ -30,6 +30,7 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="css/update.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">
     <link href="plugin/easyui/themes/icon.css" rel="stylesheet">
     <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
@@ -84,12 +85,12 @@
             <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;">
 
             </div>
-            <div id="searchBar" class="form-group" style="margin-bottom:0;">
-                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
-                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、请假理由" id="searchBarText">
-                </div>
-                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
-            </div>
+<%--            <div id="searchBar" class="form-group" style="margin-bottom:0;">--%>
+<%--                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">--%>
+<%--                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、请假理由" id="searchBarText">--%>
+<%--                </div>--%>
+<%--                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>--%>
+<%--            </div>--%>
         </div>
 
 

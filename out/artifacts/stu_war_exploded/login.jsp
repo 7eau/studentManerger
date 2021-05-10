@@ -12,6 +12,30 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url("image/bg _gray.jpg");
+        }
+        /*.login-box {*/
+        /*    background:;*/
+        /*}*/
+        .form-group input {
+            background: transparent;
+            border-color: rgba(0, 0, 0, 6);
+            color: #000;
+        }
+        .login-box legend {
+            text-align: center;
+        }
+        .form-group button {
+            letter-spacing: .1125rem;
+        }
+        .form-group #login {
+            width: 60%;
+            margin-right: 2rem;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -57,7 +81,7 @@
                     </div>
                 </div>
                 <div class="form-group" style="margin-top: 30px;">
-                    <div class="col-md-offset-4">
+                    <div class="col-md-offset-2">
                         <button class="btn btn-primary" id="login">登陆</button>
                         <button class="btn btn-default" id="reset">重置</button>
 <%--                        <button class="btn btn-warning" id="signup">注册</button>--%>

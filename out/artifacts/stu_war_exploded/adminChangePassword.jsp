@@ -16,6 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <title>管理员密码修改</title>
+    <link href="css/update.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">

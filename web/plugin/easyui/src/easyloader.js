@@ -389,7 +389,7 @@
 		locales:locales,
 		
 		base:'.',
-		theme:'default',
+		theme:'bootstrap',
 		css:true,
 		locale:null,
 		timeout:2000,

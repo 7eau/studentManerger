@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
       <link href="css/dcalendar.picker.css" rel="stylesheet">
     <![endif]-->
+      <link href="css/update.css" rel="stylesheet">
     <link href="css/mycss.css" rel="stylesheet">
     <link href="plugin/easyui/themes/icon.css" rel="stylesheet">
     <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
@@ -90,12 +91,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    <button class="btn btn-default btn-sm" id="checkAll-btn">全部选择</button>
                    <button class="btn btn-default btn-sm" id="unCheckAll-btn">取消选择</button>
 			   </div>
-			   <div id="searchBar" class="form-group" style="margin-bottom:0;">
-				   <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
-					   <input type="text" class="form-control form-inline input-sm" placeholder="姓名、身份证、性别、电话、QQ、邮箱、地址" id="searchBarText">
-				   </div>
-				   <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
-			   </div>
+<%--			   <div id="searchBar" class="form-group" style="margin-bottom:0;">--%>
+<%--				   <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">--%>
+<%--					   <input type="text" class="form-control form-inline input-sm" placeholder="姓名、身份证、性别、电话、QQ、邮箱、地址" id="searchBarText">--%>
+<%--				   </div>--%>
+<%--				   <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>--%>
+<%--			   </div>--%>
 		   </div>
            <div id="dd" style="padding: 20px;display: none">
                <div class="form-horizontal" id="addForm">
