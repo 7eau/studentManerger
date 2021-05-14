@@ -55,8 +55,10 @@
 
 10.学生增加修改密码功能
 
+11.优化完善搜索功能。项目完结：时间：2021年5月15日 02点13分 update by `Heat`(7eau是GitHub账户名)
+
 ## 项目使用说明
-1.建立`stumanager`数据库，运行`stumanager.sql`。
+1.建立`stumanager`数据库，运行`stumanager-latest.sql`。
    
 2.修改`resources/spring-mybatis`中数据库的配置。请注意数据库驱动、数据库用户名、数据库密码等。
 
