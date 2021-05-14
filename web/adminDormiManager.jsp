@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学生管理信息系统--管理员</title>
+    <title>学生信息管理系统--管理员</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -82,17 +82,19 @@
         </div>
 
         <div id="toolBar" class="form-horizontal" style="width:100%; margin-bottom:0;vertical-align: middle;">
-            <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;">
+            <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;margin-right: -200px;">
                 <button class="btn btn-default btn-sm" id="addZoneBtn">添加园区</button>
                 <button class="btn btn-default btn-sm" id="delZoneBtn">删除园区</button>
+                <button class="btn btn-default btn-sm" id="clearSearch">移除搜索条件</button>
             </div>
 
-<%--            <div id="searchBar" class="form-group" style="margin-bottom:0;">--%>
-<%--                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">--%>
-<%--                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、区域名称" id="searchBarText">--%>
-<%--                </div>--%>
-<%--                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>--%>
-<%--            </div>--%>
+            <div id="searchBar" class="form-group" style="margin-bottom:0;margin-right: -200px;">
+                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
+                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、区域名称" id="searchBarText">
+                </div>
+                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
+                <button id="searchBarBtnByUsername" class="btn btn-default btn-sm">按学号搜索</button>
+            </div>
         </div>
 
         <div id="updateDormBox" style="padding: 20px;display: none">

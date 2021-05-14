@@ -21,6 +21,7 @@ var initDataGrid = function(){
             {field:'id',title:'编号',width:'auto',hidden:'true'},
             {field:'flag',title:'标记',width:'auto',hidden:'true'},
             {field:'name',title:'课程名称',width:'200',align : 'center'},
+            {field:'teacher',title:'授课教师',width:'200',align : 'center'},
             {field:'courseType',title:'课程类型',width:'200',align : 'center'},
             {field:'score',title:'学分',width:'100',align : 'center'},
             {field:'opt',title:'操作',width:'200',align:'center',

@@ -17,7 +17,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-	<title>学生管理信息系统--学生</title>
+	<title>学生信息管理系统--学生</title>
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -30,6 +30,16 @@
 	<link href="css/mycss.css" rel="stylesheet">
 	<link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
 	<link href="plugin/easyui/themes/icon.css" rel="stylesheet">
+	<style>
+		.btn-group>.btn:first-child {
+			margin-left: 85px;
+		}
+
+		.form-horizontal .form-group {
+			margin-right: -100px;
+			margin-left: -15px;
+		}
+	</style>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -61,7 +71,7 @@
 		<ul class="nav nav-pills nav-stacked">
 			<li role="presentation"><a href="stuMsg.jsp">个人资料</a></li>
 			<li role="presentation"><a href="stuDormitory.jsp">住宿信息</a></li>
-			<li role="presentation"><a href="stuChooseClasses.jsp">选课系统</a></li>
+			<li role="presentation"><a href="stuChooseClasses.jsp">自主选课</a></li>
 			<li role="presentation" class="active"><a href="stuGrade.jsp">成绩信息</a></li>
 			<li role="presentation"><a href="stuReward.jsp">奖励信息</a></li>
 			<li role="presentation"><a href="stuPunish.jsp">处罚信息</a></li>
@@ -78,7 +88,26 @@
 		<div id="studentGradeBox">
 		</div>
 		<div id="toolBar" class="form-horizontal" style="width:100%; margin-bottom:0;vertical-align: middle;">
-			<button class="btn btn-default btn-sm" disabled id="MsgBtn">绩点：</button>
+			<div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;">
+				<button class="btn btn-default btn-sm" disabled id="MsgBtn">绩点：</button>
+				<button class="btn btn-default btn-sm" id="removeKeywords">去除筛选条件</button>
+			</div>
+			<div id="searchBar" class="form-group" style="margin-bottom:0;">
+				<div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
+					<input type="text" class="form-control form-inline input-sm" placeholder="请输入课程名称、授课教师、课程类型" id="searchBarText">
+				</div>
+				<div class="btn-group">
+					<button id="searchBarBtn" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						搜索
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><button  class="btn btn-default" id="searchByCourseName">按课程名称搜索</button></li>
+						<li><button  class="btn btn-default"  id="searchByTeacher">按教师名称搜索</button></li>
+						<li><button  class="btn btn-default"  id="searchByCourseType">按课程类型搜索</button></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

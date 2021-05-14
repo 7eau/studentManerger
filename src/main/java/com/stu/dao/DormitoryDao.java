@@ -17,7 +17,7 @@ public interface DormitoryDao {
 
     int getTotalStuDormitory(String keyword);
 
-    List<Map<String,Object>> getAllStuDormitory(String keyword, int begin, int rows);
+    List<Map<String,Object>> getAllStuDormitory(String keyword, int begin, int rows,String username);
 
     Map<String, Object> getStuDormitoryInfo(int stuId);
 

@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.stu.dao.StudentMapper;
+import com.stu.dao.UserMapper;
+import com.stu.entity.Student;
+import com.stu.entity.User;
+import com.stu.util.RSAHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +28,14 @@ import com.stu.dao.StuManagerDao;
 public class StuManagerService {
 	@Autowired
 	private StuManagerDao stuManagerDao;
+	@Autowired
+	private UserMapper userMapper;
+	@Autowired
+	private StudentMapper studentMapper;
+	@Autowired
+	private User user;
+	@Autowired
+	private Student student;
 
 
     /**
@@ -58,15 +71,19 @@ public class StuManagerService {
 	 * 获取全部学生信息
 	 * @return
 	 */
-	public Map<String, Object> getAllstu(String keywords,int page,int rows) {
+	public Map<String, Object> getAllstu(String username, String keywords,int page,int rows) {
+		//初始化参数设置
 		Map<String,Object> result = new HashMap<String,Object>();
 		List<Map<String,Object>> data = new ArrayList<Map<String,Object>>();
+		// 判空或者非法keyword参数
 		if(keywords==null || keywords=="null"){
 			keywords = "";
 		}
+		// 计算开始行数
 		int begin = (page-1)*rows;
-		int total = stuManagerDao.getCountStu(keywords);
-		data = stuManagerDao.getAllStu(keywords,begin,rows);
+		// 访问数据库
+		data = stuManagerDao.getAllStu(keywords,begin,rows,username);
+		int total = data.size();
 		result.put("total",total);
 		result.put("rows",data);
 		return result;
@@ -79,7 +96,7 @@ public class StuManagerService {
 	 * @param addSex
 	 * @return
 	 */
-	public Map<String,Object> addStudent(String addName,String addIdcard, String addSex) {
+	public Map<String,Object> addStudent(String username, String addName,String addIdcard, String addSex) {
 		Map<String,Object> result = new HashMap<String,Object>();
 		if(addName==null){
 			result.put("code",false);
@@ -89,7 +106,20 @@ public class StuManagerService {
 		if(addIdcard==null){
 			addIdcard = "";
 		}
-		stuManagerDao.addStudent(addName,addIdcard,addSex);
+		// 添加学生
+		student.setName(addName);
+		student.setIdcard(addIdcard);
+		student.setSex(addSex);
+//		int stuID = stuManagerDao.addStudent(addName,addIdcard,addSex);
+		studentMapper.insertSelective(student);
+		int stuID = student.getId();
+		// 添加学生账号
+		user.setPassword(RSAHelper.encryptData("123456", "UTF-8"));
+		user.setUsername(username);
+		user.setStuid(stuID);
+		user.setReset("0");
+		userMapper.insert(user);
+
 		result.put("code",true);
 		result.put("msg","添加成功!");
 		return result;

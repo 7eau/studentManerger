@@ -5,11 +5,37 @@
     <select id="getTotalGrade" parameterType="int" resultType="int">
         SELECT COUNT(*) FROM stu_course WHERE student_id = #{0}
     </select>
-    <select id="getGrade" parameterType="int" resultType="map">
-        SELECT course.`name`,courseType.`name` courseType,course.`score` courseScore,stu_course.`score`
-        FROM stu_course LEFT JOIN course ON stu_course.`course_id`=course.`id`
-        LEFT JOIN coursetype ON coursetype.`id`=course.`courseType`
-        WHERE student_id = #{0} LIMIT #{1},#{2}
+    <select id="getGrade" resultType="map">
+    SELECT
+        course.`name`,
+        coursetype.`name` AS courseType,
+        course.score AS courseScore,
+        stu_course.score,
+        teacher.`name` AS teacher
+    FROM
+        coursetype
+        INNER JOIN
+        course
+        ON
+            coursetype.id = course.courseType
+            <if test="param4 != null">and course.`name` LIKE CONCAT('%',#{param4,jdbcType=VARCHAR},'%')</if>
+        INNER JOIN
+        stu_course
+        ON
+            course.id = stu_course.course_id
+        INNER JOIN
+        teacher_course
+        ON
+            course.id = teacher_course.courseId
+        INNER JOIN
+        teacher
+        ON
+            teacher_course.teacherId = teacher.id
+            <if test="param5 != null">and teacher.`name` LIKE CONCAT('%',#{param5,jdbcType=VARCHAR},'%')</if>
+    WHERE
+        stu_course.student_id = #{0}
+        <if test="param6 != null">and coursetype.`name` LIKE CONCAT('%',#{param6,jdbcType=VARCHAR},'%')</if>
+        LIMIT #{1},#{2}
     </select>
     <select id="getAllGrade" parameterType="int" resultType="map">
         SELECT course.`name`,courseType.`name` courseType,course.`score` courseScore,stu_course.`score`

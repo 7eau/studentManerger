@@ -76,6 +76,8 @@ var initDataGrid = function(){
 		height:'500px',
 		columns:[[
 			{field:'id',title:'编号',width:'auto',hidden:'true'},
+            {field:'uid',title:'编号',width:'auto',hidden:'true'},
+            {field:'username',title:'学号',width:'100',align: 'center'},
 			{field:'name',title:'姓名',width:'50',align : 'center'},
 			{field:'idcard',title:'身份证',width:'140',align : 'center'},
 			{field:'sex',title:'性别',width:'50',align : 'center'},
@@ -113,6 +115,7 @@ var initDataGrid = function(){
 		loadMsg:'怕是等一下哦',
 		toolbar:"#toolBar",
         queryParams:{
+		    username:"",
             keywords:""
 		}
 	});
@@ -130,8 +133,14 @@ var initClick = function(){
 	//搜索按钮
 	$("#searchBarBtn").click(function(){
 		var keywords = $("#searchBarText").val();
-        $("#content").datagrid("load",{keywords:keywords});
+        $("#content").datagrid("load",{keywords:keywords,username:""});
 	});
+
+    $("#searchBarBtnByUsername").click(function(){
+        var keywords = $("#searchBarText").val();
+        $("#content").datagrid("load",{keywords:"",username:keywords});
+    });
+
 	//显示全部按钮
 	$("#showAll-btn").click(function(){
         $("#content").datagrid("load",{keywords:""});
@@ -147,13 +156,14 @@ var initClick = function(){
 
 	//添加学生
 	$("#subAddBtn").click(function(){
+	    var username = $("#add-username").val();
 	    var name = $("#add-name").val();
 	    var idcard = $("#add-idcard").val();
 	    var sex = $("input[name='addSex']:checked").val();
 
 	    var duplicateCheck=undefined;
 
-        if(name=='' || name.length<2 || name.length>10)
+        if(username == '' || name=='' || name.length<2 || name.length>10)
         {
             $.messager.alert({
                 title:"提示",
@@ -206,6 +216,7 @@ var initClick = function(){
             url:"/stu/stuManager/addStudent.do",
             type:"POST",
             data:{
+                username:username,
                 name:name,
                 idcard:idcard,
                 sex:sex

@@ -3,6 +3,7 @@ package com.stu.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,9 +19,9 @@ public interface StuManagerDao {
 
 	int getCountStu(String keywords);
 
-	List<Map<String,Object>> getAllStu(String keywords, int begin, int rows);
+	List<Map<String,Object>> getAllStu(String keywords, int begin, int rows,String username);
 
-	void addStudent(String addName, String addIdcard, String addSex);
+	int addStudent(String name, String idcard, String sex);
 
 	void delStudent(String id);
 

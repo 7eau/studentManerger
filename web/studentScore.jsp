@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学生管理信息系统--管理员</title>
+    <title>学生信息管理系统--教师</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -77,14 +77,6 @@
             </ol>
         </div>
         <div id="content">
-        </div>
-        <div id="toolBar" class="form-horizontal" style="width:100%; margin-bottom:0;vertical-align: middle;">
-            <div id="searchBar" class="form-group" style="margin-bottom:0;">
-                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
-                    <input type="text" class="form-control form-inline input-sm" placeholder="请输入学生名称" id="searchBarText">
-                </div>
-                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
-            </div>
         </div>
         <div id="jj" style="padding:20px;display: none;" class="form-horizontal">
             <div class="form-group">

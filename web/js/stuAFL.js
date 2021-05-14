@@ -101,14 +101,14 @@ var initDataGrid = function(){
             {field:'approve',title:'批准状态',width:'100',align : 'center',
                 formatter:function(value, row, index) {
                     if (row.approve == undefined || row.approve == '0') {
-                        var str = '<font style="color:red;">未批准</font>';
+                        var str = '<font style="color:gold;">待批准</font>';
                         return str;
-                    }else if(row.approve='1'){
+                    }else if(row.approve=='1'){
                         var str ='<font style="color:green;">已批准</font>';
                         return str;
                     }
                     else{
-                        var str ='<font style="color:red;">错误</font>';
+                        var str ='<font style="color:red;">已拒绝</font>';
                         return str;
                     }
                 }

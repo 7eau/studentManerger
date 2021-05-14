@@ -114,9 +114,9 @@ public class DormitoryController {
      * @throws IOException
      */
     @RequestMapping("/getAllStuDormitory.do")
-    public void getAllStuAFL(String keywords,int page,int rows ,HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void getAllStuAFL(String username,String keywords,int page,int rows ,HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String,Object> result = new HashMap<String,Object>();
-        result = dormitoryService.getAllStuDormitory(keywords,page,rows);
+        result = dormitoryService.getAllStuDormitory(username,keywords,page,rows);
         ResponseUtil.returnJson(result,response);
     }
 

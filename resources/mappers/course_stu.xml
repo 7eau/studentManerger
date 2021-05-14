@@ -6,25 +6,45 @@
     <select id="getTotalCourse" resultType="integer">
         select count(*) from course
     </select>
-	
+
     <select id="getAllCourse" resultType="map">
-        SELECT course.`id`,course.`name`,course.`score`,courseType.`name` courseType FROM course
-        LEFT JOIN coursetype ON coursetype.id=course.`courseType`
-        WHERE course.`name` LIKE CONCAT('%',#{0},'%')
+    SELECT
+        course.id,
+        course.`name`,
+        course.score,
+        coursetype.`name` AS courseType,
+        teacher.`name` AS teacher
+    FROM
+        course
+        INNER JOIN
+        coursetype
+        ON
+            course.courseType = coursetype.id
+        INNER JOIN
+        teacher_course
+        ON
+            course.id = teacher_course.courseId
+        INNER JOIN
+        teacher
+        ON
+            teacher_course.teacherId = teacher.id
+        WHERE course.`name` LIKE CONCAT('%',#{0},'%') or
+              courseType.`name` LIKE CONCAT('%',#{0},'%') or
+              teacher.`name` LIKE CONCAT('%',#{0},'%')
         ORDER BY course.`id` DESC
         LIMIT #{1},#{2}
     </select>
-	
+
     <select id="getStuCourse" parameterType="integer" resultType="integer">
         SELECT stu_course.`course_id` FROM stu_course WHERE stu_course.`student_id`=#{0}
     </select>
-	
+
     <select id="getCanGetCourse" resultType="integer">
         select state from switch where name='courseSwitch'
     </select>
-	
+
     <insert id="getCourse" parameterType="integer">
         INSERT into stu_course(student_id, course_id) VALUES (#{0},#{1})
     </insert>
-	
+
 </mapper>

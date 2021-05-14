@@ -19,7 +19,8 @@ var initDataGrid = function(){
         columns:[[
             {field:'id',title:'编号',width:'auto',hidden:'true'},
             {field:'student_id',title:'学生编号',width:'auto',hidden:'true'},
-            {field:'name',title:'学生名',width:'200',align : 'center'},
+            {field:'username',title:'学号',width:'100',align : 'center'},
+            {field:'name',title:'学生名',width:'100',align : 'center'},
             {field:'reason',title:'请假理由',width:'200',align : 'center'},
             {field:'start_time',title:'开始时间',width:'150',align : 'center'},
             {field:'end_time',title:'结束时间',width:'150',align : 'center'},
@@ -27,11 +28,14 @@ var initDataGrid = function(){
                 formatter:function(value, row, index){
                     if(row.approve=='0')
                     {
-                        var str = '<font style="color:red;">未批准</font>';
+                        var str = '<font style="color:gold;">待批准</font>';
                     }
-                    else if(row.approve='1')
+                    else if(row.approve=='1')
                     {
                         var str ='<font style="color:green;">已批准</font>';
+                    }
+                    else if(row.approve=='2') {
+                        var str = '<font style="color:red;">已拒绝</font>';
                     }
                     return str; },
             },
@@ -46,13 +50,13 @@ var initDataGrid = function(){
             {field:'opt',title:'操作',width:'100',align:'center',
                 formatter:function(value, row, index){
                     var str = '<a href="javascript:void(0)" onclick="approveStuAFL(\''+row.id+'\',\''+row.student_id+'\',\''+row.approve+'\')" name="approveAFL" class="easyui-linkbutton" ></a>';
-                    str+='<a href="javascript:void(0)" onclick="delStuAFL(\''+row.id+'\',\''+row.student_id+'\')" name="delAFL" class="easyui-linkbutton" ></a>';
+                    str+='<a href="javascript:void(0)" onclick="delStuAFL(\''+row.id+'\',\''+row.student_id+'\',\''+row.approve+'\')" name="delAFL" class="easyui-linkbutton" ></a>';
                     return str; },
             }
         ]],
         onLoadSuccess:function(data){
             $("a[name='approveAFL']").linkbutton({text:'批准',plain:true,iconCls:'icon-ok'});
-            $("a[name='delAFL']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
+            $("a[name='delAFL']").linkbutton({text:'拒绝',plain:true,iconCls:'icon-cancel'});
         },
         singleSelect:true,
         border:false,
@@ -66,6 +70,7 @@ var initDataGrid = function(){
         loadMsg:'怕是等一下哦',
         toolbar:"#toolBar",
         queryParams:{
+            username:"",
             keywords:""
         }
     });
@@ -96,8 +101,20 @@ var approveStuAFL=function(aflId,stuId,approve)
 }
 
 //删除学生请假信息
-var delStuAFL = function(aflId,stuId){
-    $.messager.confirm("确认信息","您确定要删除这条学生请假信息吗？",function(r){
+var delStuAFL = function(aflId,stuId,approve){
+
+    if(approve=='1')
+    {
+        $.messager.alert({
+            title:"提示",
+            icon:"error",
+            msg:"您已经批准过了！"
+        });
+        return;
+    }
+
+
+    $.messager.confirm("确认信息","您确定要拒绝这条学生请假信息吗？",function(r){
         if(r){
             $.ajax({
                 url:"/stu/aflManager/delStuAFL.do",
@@ -127,7 +144,7 @@ var delStuAFL = function(aflId,stuId){
                     $.messager.alert({
                         title:"提示",
                         icon:"error",
-                        msg:"删除失败！"
+                        msg:"拒绝失败！"
                     });
                 }
             });
@@ -185,8 +202,16 @@ var initClick = function(){
     //搜索按钮点击事件
     $("#searchBarBtn").click(function(){
         var keywords = $("#searchBarText").val();
-        $("#content").datagrid("reload",{keywords:keywords});
+        $("#content").datagrid("reload",{username:"",keywords:keywords});
     });
+
+    $("#searchBarBtnByUsername").click(function (){
+        var keywords = $("#searchBarText").val();
+        $("#content").datagrid("reload",{username:keywords,keywords:""});
+    })
+    $("#clearSearch").click(function (){
+        $("#content").datagrid("reload",{username:"",keywords:""});
+    })
     // 修改密码窗格
     $("#changePassword").click(function (){
         // $.messager.alert("提示", "点击了按钮！");

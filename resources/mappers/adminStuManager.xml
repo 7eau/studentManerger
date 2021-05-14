@@ -12,20 +12,30 @@
 			  email like concat(concat('%',#{0}),'%') or
 			  address like concat(concat('%',#{0}),'%')
 	</select>
-	<select id="getAllStu" parameterType="string" resultType="map">
-		select * from student
-		where name like concat(concat('%',#{0}),'%') or
-			  idcard like concat(concat('%',#{0}),'%') or
-			  sex like concat(concat('%',#{0}),'%') or
-			  phone like concat(concat('%',#{0}),'%') or
-			  qq like concat(concat('%',#{0}),'%') or
-			  email like concat(concat('%',#{0}),'%') or
-			  address like concat(concat('%',#{0}),'%')
-		order by id desc
-		limit #{1} ,#{2}
+	<select id="getAllStu" resultType="map">
+	SELECT
+        student.*,
+        `user`.username,
+        `user`.id AS uid
+    FROM
+        student
+        INNER JOIN
+        `user`
+        ON
+            student.id = `user`.stuId
+            <if test="param4 != null">and username like concat(concat('%',#{3}),'%')</if>
+    where name like concat(concat('%',#{0}),'%') or
+          idcard like concat(concat('%',#{0}),'%') or
+          sex like concat(concat('%',#{0}),'%') or
+          phone like concat(concat('%',#{0}),'%') or
+          qq like concat(concat('%',#{0}),'%') or
+          email like concat(concat('%',#{0}),'%') or
+          address like concat(concat('%',#{0}),'%')
+    order by id desc
+    limit #{1} ,#{2}
 	</select>
-	<insert id="addStudent" parameterType="string">
-		INSERT into student(name,idcard,sex) values(#{0},#{1},#{2})
+	<insert id="addStudent" parameterType="string" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+		INSERT into student(name,idcard,sex) values(#{name},#{idcard},#{sex})
 	</insert>
     <delete id="delStudent" parameterType="int">
         DELETE FROM student WHERE id=#{0}

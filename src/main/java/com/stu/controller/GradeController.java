@@ -36,9 +36,9 @@ public class GradeController {
      * @throws IOException
      */
     @RequestMapping("/getGrade.do")
-    public void getGrade(int stuId, int page, int rows, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void getGrade(int type, String keywords, int stuId, int page, int rows, HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String,Object> result = new HashMap<String,Object>();
-        result = gradeService.getGrade(stuId,page,rows);
+        result = gradeService.getGrade(type, keywords, stuId,page,rows);
         ResponseUtil.returnJson(result,response);
     }
 

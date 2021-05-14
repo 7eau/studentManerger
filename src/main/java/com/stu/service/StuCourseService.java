@@ -34,14 +34,14 @@ public class StuCourseService {
     public Map<String,Object> getAllCourse(Integer stuId, String keywords, Integer page, Integer rows) {
         Map<String,Object> result = new HashMap<String,Object>();
         List<Map<String,Object>> data = new ArrayList<>();
-        //查找课程总数
-        int total = courseDao.getTotalCourse();
         //课程分页起始
         int begin = (page-1)*rows;
         //查找所有课程
         data = courseDao.getAllCourse(keywords,begin,rows);
         //查找该学生已选择课程
         List<Integer> stuCourse = courseDao.getStuCourse(stuId);
+        //查找课程总数
+        int total = data.size();
         //标志已选择的课程
         for(int i=0;i<stuCourse.size();i++){
             for(int j=0;j<data.size();j++){

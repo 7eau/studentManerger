@@ -20,7 +20,7 @@ import java.util.Map;
 public interface AFLManagerDao {
 
 
-    List<Map<String,Object>> getAllStuAFL(String keyword, int begin, int rows);
+    List<Map<String,Object>> getAllStuAFL(String keyword, int begin, int rows, String username);
 
     int getTotalAFL(String keyword);
 

@@ -92,9 +92,9 @@ public class StuManagerController {
 	 * @param response
 	 */
 	@RequestMapping(value = "/getAllStu.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public void getAllStu(String keywords,int page,int rows ,HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void getAllStu(String username, String keywords,int page,int rows ,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Map<String,Object> data = new HashMap<String,Object>();
-		data = stuManagerService.getAllstu(keywords,page,rows);
+		data = stuManagerService.getAllstu(username,keywords,page,rows);
 		ResponseUtil.returnJson(data, response);
 	}
 
@@ -108,9 +108,9 @@ public class StuManagerController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addStudent.do",method = {RequestMethod.POST,RequestMethod.GET})
-	public void addStudent(String name,String idcard,String sex ,HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void addStudent(String username,String name,String idcard,String sex ,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Map<String,Object> data = new HashMap<String,Object>();
-		data = stuManagerService.addStudent(name,idcard,sex);
+		data = stuManagerService.addStudent(username,name,idcard,sex);
 		ResponseUtil.returnJson(data, response);
 	}
 

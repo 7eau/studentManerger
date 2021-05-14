@@ -8,6 +8,11 @@
 $(document).ready(function(){
     initDataGrid();
     initJD();
+    initClick();
+    var searchCourse = function(type) {
+        var keywords = $("#searchBarText").val();
+        $("#studentGradeBox").datagrid("load",{keywords:keywords,stuId:stuId,type:type});
+    };
 });
 var initDataGrid = function(){
     var stuId = $("#userId").val();
@@ -18,6 +23,7 @@ var initDataGrid = function(){
         columns:[[
             {field:'id',title:'编号',width:'auto',hidden:'true'},
             {field:'name',title:'课程名称',width:'200',align : 'center'},
+            {field:'teacher',title:'授课教师',width:'200',align : 'center'},
             {field:'courseType',title:'课程类型',width:'200',align : 'center'},
             {field:'courseScore',title:'学分',width:'100',align : 'center'},
             {field:'score',title:'得分',width:'100',align : 'center',
@@ -44,6 +50,8 @@ var initDataGrid = function(){
         loadMsg:'怕是等一下哦',
         toolbar:"#toolBar",
         queryParams:{
+            type:0,
+            keywords:"",
             stuId:stuId
         }
     });
@@ -54,6 +62,7 @@ var initJD = function(){
         url:"/stu/grade/getJD.do",
         type:"POST",
         data:{
+            keywords:"",
             stuId:stuId
         },
         success:function(result){
@@ -94,4 +103,26 @@ var initJD = function(){
         });
         win.dialog('open');
     }
+};
+var initClick = function () {
+    var stuId = $("#userId").val();
+    $("#removeKeywords").click(function(){
+        $("#studentGradeBox").datagrid("load",{keywords:"",stuId:stuId, type:0});
+    });
+    $("#searchByCourseName").click(function (){
+        let keywords = $("#searchBarText").val();
+        let type = 1;
+        $("#studentGradeBox").datagrid("load",{keywords:keywords,stuId:stuId, type:type});
+    })
+    $("#searchByTeacher").click(function (){
+        let keywords = $("#searchBarText").val();
+        let type = 2;
+        $("#studentGradeBox").datagrid("load",{keywords:keywords,stuId:stuId, type:type});
+    })
+    $("#searchByCourseType").click(function (){
+        let keywords = $("#searchBarText").val();
+        let type = 3;
+        $("#studentGradeBox").datagrid("load",{keywords:keywords,stuId:stuId, type:3});
+    })
+
 };

@@ -94,15 +94,15 @@ public class DormitoryService {
      * @param rows
      * @return
      */
-    public Map<String,Object> getAllStuDormitory(String keywords, int page, int rows) {
+    public Map<String,Object> getAllStuDormitory(String username,String keywords, int page, int rows) {
         Map<String,Object> result = new HashMap<>();
         List<Map<String,Object>> data = new ArrayList<>();
         if(keywords==null){
             keywords="";
         }
         int begin = (page-1)*rows;
-        int total = dormitoryDao.getTotalStuDormitory(keywords);
-        data = dormitoryDao.getAllStuDormitory(keywords,begin,rows);
+        data = dormitoryDao.getAllStuDormitory(keywords,begin,rows,username);
+        int total = data.size();
         result.put("total",total);
         result.put("rows",data);
         return result;

@@ -38,9 +38,9 @@ public class AFLManagerController {
      * @throws IOException
      */
     @RequestMapping("/getAllStuAFL.do")
-    public void getAllStuAFL(String keywords,int page,int rows ,HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void getAllStuAFL(String username, String keywords,int page,int rows ,HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String,Object> result = new HashMap<String,Object>();
-        result = aflManagerService.getAllStuAFL(keywords,page,rows);
+        result = aflManagerService.getAllStuAFL(username,keywords,page,rows);
         ResponseUtil.returnJson(result,response);
     }
 
@@ -57,7 +57,7 @@ public class AFLManagerController {
     public void delCourse(int stuId,int aflId,HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String,Object> result = new HashMap<String,Object>();
         result = aflManagerService.delStuAFL(stuId,aflId);
-        result.put("msg","删除操作成功");
+        result.put("msg","拒绝操作成功");
         ResponseUtil.returnJson(result,response);
     }
 

@@ -30,12 +30,25 @@ public class GradeService {
      * @param rows
      * @return
      */
-    public Map<String,Object> getGrade(int stuId, int page, int rows) {
+    public Map<String,Object> getGrade(int type, String keywords, int stuId, int page, int rows) {
+        /**
+         * 课程名：1
+         * 教师名：2
+         * 课程类型：3
+         */
         Map<String,Object> result = new HashMap<String,Object>();
         List<Map<String,Object>> data = new ArrayList<>();
         int begin = (page-1)*rows;
-        int total = gradeDao.getTotalGrade(stuId);
-        data = gradeDao.getGrade(stuId,begin,rows);
+        if (type == 0) {
+            data = gradeDao.getGrade(stuId,begin,rows,null,null,null);
+        } else if (type == 1) {
+            data = gradeDao.getGrade(stuId,begin,rows,keywords,null,null);
+        } else if (type == 2) {
+            data = gradeDao.getGrade(stuId,begin,rows,null,keywords,null);
+        } else if (type == 3) {
+            data = gradeDao.getGrade(stuId,begin,rows,null,null,keywords);
+        }
+        int total = data.size();
         result.put("total",total);
         result.put("rows",data);
         return result;

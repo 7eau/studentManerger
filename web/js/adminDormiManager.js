@@ -19,6 +19,7 @@ var initDataGrid = function(){
         columns:[[
             {field:'id',title:'编号',width:'auto',hidden:'true'},
             {field:'student_id',title:'学生编号',width:'auto',hidden:'true'},
+            {field:'username',title:'学号',width:'100',align:'center'},
             {field:'student_name',title:'学生名',width:'200',align : 'center'},
             {field:'zone_name',title:'所住片区',width:'200',align : 'center'},
             {field:'building',title:'楼栋',width:'150',align : 'center'},
@@ -44,6 +45,7 @@ var initDataGrid = function(){
         loadMsg:'怕是等一下哦',
         toolbar:"#toolBar",
         queryParams:{
+            username:"",
             keywords:""
         }
     });
@@ -260,6 +262,10 @@ var initClick = function(){
             }
         });
 
+
+
+
+
     });
     
     $("#addZoneBtn").click(function () {
@@ -270,6 +276,20 @@ var initClick = function(){
             width:400,
             height:200
         })
+    })
+
+    $("#searchBarBtn").click(function (){
+        var keywords = $("#searchBarText").val();
+        $("#content").datagrid("reload",{username:"",keywords:keywords});
+    });
+
+    $("#searchBarBtnByUsername").click(function (){
+        var keywords = $("#searchBarText").val();
+        $("#content").datagrid("reload",{username:keywords,keywords:""});
+    });
+
+    $("#clearSearch").click(function (){
+        $("#content").datagrid("reload",{username:"",keywords:""});
     })
 
     $("#subAddZoneBtn").click(function () {

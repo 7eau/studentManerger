@@ -10,11 +10,33 @@
         or student.`name` like concat('%',#{0},'%')
     </select>
 
-    <select id="getAllStuAFL" parameterType="String" resultType="map">
-        SELECT stu_afl.id,stu_afl.student_id,student.name,stu_afl.reason,stu_afl.start_time,stu_afl.end_time,stu_afl.approve,stu_afl.approve_time
-        from stu_afl join student on stu_afl.student_id=student.id
-        where stu_afl.`reason` like concat('%',#{0},'%')
+    <select id="getAllStuAFL" resultType="map">
+    SELECT
+        stu_afl.id AS id,
+        stu_afl.student_id AS student_id,
+        `user`.username AS username,
+        student.`name`,
+        stu_afl.reason,
+        stu_afl.start_time,
+        stu_afl.end_time,
+        stu_afl.approve,
+        stu_afl.approve_time
+    FROM
+        stu_afl
+        INNER JOIN
+        student
+        ON
+            stu_afl.student_id = student.id
+        INNER JOIN
+        `user`
+        ON
+            student.id = `user`.stuId
+            <if test="param4 != null">and user.`username` like concat('%',#{3},'%')</if>
+    where
+        stu_afl.`reason` like concat('%',#{0},'%')
         or student.`name` like concat('%',#{0},'%')
+    order by id desc
+    limit #{1},#{2}
     </select>
 
     <update id="approveStuAFL" parameterType="int">
@@ -23,8 +45,9 @@
         where stu_afl.student_id=#{0} and stu_afl.id=#{1}
     </update>
 
-    <delete id="delStuAFL" parameterType="int">
-        DELETE FROM stu_afl
+    <update id="delStuAFL" parameterType="int">
+        update stu_afl
+        set stu_afl.approve='2'
         where stu_afl.student_id=#{0} and stu_afl.id=#{1}
-    </delete>
+    </update>
 </mapper>

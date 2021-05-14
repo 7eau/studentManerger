@@ -30,15 +30,15 @@ public class AFLManagerService {
      * @param rows
      * @return
      */
-    public Map<String,Object> getAllStuAFL(String keywords, int page, int rows) {
+    public Map<String,Object> getAllStuAFL(String username,String keywords, int page, int rows) {
+        List<Map<String,Object>> data;
         Map<String,Object> result = new HashMap<>();
-        List<Map<String,Object>> data = new ArrayList<>();
         if(keywords==null){
             keywords="";
         }
         int begin = (page-1)*rows;
-        int total = aflManagerDao.getTotalAFL(keywords);
-        data = aflManagerDao.getAllStuAFL(keywords,begin,rows);
+        data = aflManagerDao.getAllStuAFL(keywords,begin,rows,username);
+        int total = data.size();
         result.put("total",total);
         result.put("rows",data);
         return result;

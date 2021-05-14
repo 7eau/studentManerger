@@ -82,15 +82,16 @@
         </div>
 
         <div id="toolBar" class="form-horizontal" style="width:100%; margin-bottom:0;vertical-align: middle;">
-            <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;">
-
+            <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;margin-right: -200px;">
+                <button class="btn btn-default btn-sm" id="clearSearch">移除搜索条件</button>
             </div>
-<%--            <div id="searchBar" class="form-group" style="margin-bottom:0;">--%>
-<%--                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">--%>
-<%--                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、请假理由" id="searchBarText">--%>
-<%--                </div>--%>
-<%--                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>--%>
-<%--            </div>--%>
+            <div id="searchBar" class="form-group" style="margin-bottom:0;margin-right: -200px;">
+                <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">
+                    <input type="text" class="form-control form-inline input-sm" placeholder="姓名、请假理由" id="searchBarText">
+                </div>
+                <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
+                <button id="searchBarBtnByUsername" class="btn btn-default btn-sm">按学号搜索</button>
+            </div>
         </div>
 
 

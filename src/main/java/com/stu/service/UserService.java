@@ -85,15 +85,16 @@ public class UserService {
      */
     public Map<String, Object> studentLogin(HttpSession session, String username, String password) {
         Map<String,Object> result = new HashMap<String,Object>();
-        /**
-         * 一、存在该学生
-         *  原逻辑：存在学生没有账号。。。×
-         *  现逻辑：学生必有账号->登录只验证账号、密码即可..
-         */
-
         user = userMapper.selectByUsername(username);
 
-        if (isEquels(password, user.getPassword())) {
+        if (user == null) {
+            result.put("code", false);
+            result.put("msg", "非学生用户！请正确选择角色！");
+            return result;
+        }
+
+
+        if (isEquels(password, user.getPassword())) {//解密验证密码是否正确
             Integer stuId = user.getStuid();
             student = studentMapper.selectByPrimaryKey(stuId);
             if (getPwd(password).equals("123456")) {    //未重置密码
@@ -120,7 +121,6 @@ public class UserService {
      */
     public Map<String, Object> adminLogin(HttpSession session, String username, String password) {
         Map<String,Object> result = new HashMap<String,Object>();
-
         admin = adminMapper.selectByUsername(username);
 
         if(admin != null && isEquels(password, admin.getPassword())) {// 密码正确
@@ -130,8 +130,6 @@ public class UserService {
             session.setAttribute("adminName",admin.getName());
             session.setAttribute("adminId",admin.getId());
             session.setAttribute("adminType", admin.getType());
-
-
             Integer type = admin.getType();
             if(type == 3) {//当该管理员是教师
                 session.setAttribute("tid", admin.getTeacherid());

@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学生管理信息系统--管理员</title>
+    <title>学生信息管理系统--管理员</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -38,7 +38,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="plugin/easyui/themes/icon.css" rel="stylesheet">
     <link href="plugin/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
     <link href="css/bootstrap-switch.min.css" rel="stylesheet">
-  </head>
+    <style>
+      .btn-group>.btn:first-child {
+          margin-left: 85px;
+      }
+      #searchBarBtn {
+          margin-left: 190px;
+      }
+     </style>
   <body>
     <nav class="navbar navbar-default">
   		<div class="container-fluid">
@@ -81,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<div id="content">
    			</div>
 		   <div id="toolBar" class="form-horizontal" style="width:100%; margin-bottom:0;vertical-align: middle;">
-			   <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;">
+			   <div id="toolBar_btn" class="form-group col-lg-8 col-md-8"  style="margin-bottom:0;margin-right: -200px;">
 				   <button class="btn btn-default btn-sm" id="del-btn">多选删除</button>
 				   <button class="btn btn-default btn-sm" id="showAll-btn">查询所有</button>
 				   <button class="btn btn-default btn-sm" id="add-btn">添加学生</button>
@@ -91,15 +98,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    <button class="btn btn-default btn-sm" id="checkAll-btn">全部选择</button>
                    <button class="btn btn-default btn-sm" id="unCheckAll-btn">取消选择</button>
 			   </div>
-<%--			   <div id="searchBar" class="form-group" style="margin-bottom:0;">--%>
-<%--				   <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;">--%>
-<%--					   <input type="text" class="form-control form-inline input-sm" placeholder="姓名、身份证、性别、电话、QQ、邮箱、地址" id="searchBarText">--%>
-<%--				   </div>--%>
-<%--				   <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>--%>
-<%--			   </div>--%>
+			   <div id="searchBar" class="form-group" style="margin-bottom:0;margin-right: -200px;">
+				   <div class="form-group col-lg-4 col-md-4" style="margin-bottom:0;margin-right: -200px;">
+					   <input type="text" class="form-control form-inline input-sm" placeholder="学生、姓名、身份证、性别、电话、QQ、邮箱、地址" id="searchBarText">
+				   </div>
+				   <button id="searchBarBtn" class="btn btn-default btn-sm">搜索</button>
+                   <button id="searchBarBtnByUsername" class="btn btn-default btn-sm">按学号搜索</button>
+			   </div>
 		   </div>
            <div id="dd" style="padding: 20px;display: none">
                <div class="form-horizontal" id="addForm">
+                   <div class="form-group">
+                       <label for="add-username" class="col-md-3 control-label">学号:</label>
+                       <div class="col-md-8">
+                           <input type="text" class="form-control" id="add-username" name="addUserName">
+                       </div>
+                   </div>
                     <div class="form-group">
                         <label for="add-name" class="col-md-3 control-label">姓名:</label>
                         <div class="col-md-8">
